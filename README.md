@@ -1,8 +1,8 @@
 # Mapanalysis
 
-This is a MapKit usecase application with basic functionality and can be used as a starting point for building ideas and services based on maps and Core Location. 
+This is a MapKit usecase application with basic functionality and can be used as a starting point for building ideas and services based on maps and Core Location.
 
-It is written in Swift and UIKit and makes use of reverse geolocation (forward geolocation functionality is included but not used) from Apple Maps to display additional information. 
+It is written in Swift and UIKit and makes use of reverse geolocation (forward geolocation functionality is included but not used) from Apple Maps to display additional information.
 
 ##### **Important note:**
 
@@ -12,7 +12,7 @@ The reasons are practical: This is a simple app to showcase map functionality an
 
 **Bing Maps** has retired the geolocation API, and the service is now offered in **Azure Maps**. Authentication also changes from API Key in Bing to multiple authentication methods like EntraID, JWT, and others that pretty much defeat the purpose of this usecase.
 
-**Google Maps API**, on the other hand, requires a credit card in the  account in order to use the API. I have no other transactions with Google and I find it needless to set up a credit card <u>just</u> for the Maps API.
+**Google Maps API**, on the other hand, requires a credit card in the account in order to use the API. I have no other transactions with Google and I find it needless to set up a credit card <u>just</u> for the Maps API.
 
 Alternatives:
 There are many alternatives and I'm just pointing out a couple:
@@ -23,9 +23,10 @@ There are many alternatives and I'm just pointing out a couple:
 
 Therefore, while previous app versions had Google and Bing Maps integration, I'm only including Apple Maps now, which is part of the iOS SDK.
 
-
 Should the need to create another showcase app arise (ex. Nominatim publishes a new API), there will be either an update to this app or a new one, fully functional with the API under discussion.
 
 ### To Do:
 
 - SwiftUI version (Coming soon)
+
+Testflight Link: [MapAnalysis](https://testflight.apple.com/join/SQhZ1OCf)
