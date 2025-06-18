@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "68E2D9FA2DFB05D900F3E0CF"
-               BuildableName = "Mapanalysis.app"
-               BlueprintName = "Mapanalysis"
+               BlueprintIdentifier = "681AD0F12E0319300007DF87"
+               BuildableName = "Mapanalysis SwiftUI.app"
+               BlueprintName = "Mapanalysis SwiftUI"
                ReferencedContainer = "container:Mapanalysis.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,16 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "68E2D9FA2DFB05D900F3E0CF"
-            BuildableName = "Mapanalysis.app"
-            BlueprintName = "Mapanalysis"
+            BlueprintIdentifier = "681AD0F12E0319300007DF87"
+            BuildableName = "Mapanalysis SwiftUI.app"
+            BlueprintName = "Mapanalysis SwiftUI"
             ReferencedContainer = "container:Mapanalysis.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <LocationScenarioReference
-         identifier = "../../Mapanalysis/AcropolisMuseum.gpx"
-         referenceType = "0">
-      </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -65,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "68E2D9FA2DFB05D900F3E0CF"
-            BuildableName = "Mapanalysis.app"
-            BlueprintName = "Mapanalysis"
+            BlueprintIdentifier = "681AD0F12E0319300007DF87"
+            BuildableName = "Mapanalysis SwiftUI.app"
+            BlueprintName = "Mapanalysis SwiftUI"
             ReferencedContainer = "container:Mapanalysis.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -12,7 +12,7 @@ enum LocationAccuracy {
     case reduced, low, medium, high, best, navigation
 }
 
-class LocationManager: NSObject {
+class LocationManager: NSObject, ObservableObject {
 
     private var manager = CLLocationManager()
 	private(set) var isUpdating = false
