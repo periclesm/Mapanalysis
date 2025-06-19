@@ -14,25 +14,44 @@ struct MapView: View {
 	@State private var position = MapCameraPosition.region(
 		MKCoordinateRegion(
 			center: CLLocationCoordinate2D(latitude: 37.9710, longitude: 23.7285),
-			span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+			span: MKCoordinateSpan(latitudeDelta: AppPreferences.shared.mapZoom / 100000,
+								   longitudeDelta: AppPreferences.shared.mapZoom / 100000)
+			/*
+			 Division by 100000 is the factor between the UIKit value and SwiftUI value for maps.
+			 Normally it should not be like this but I have this app on both UIKit and SwiftUI so something must look wierd somewhere... :S
+			 */
 		)
 	)
+	
+	@State private var showOptions = false
+	@State private var showFavorites = false
+	@State private var showAnnotation = false
 	
     var body: some View {
 		ZStack {
 			Map(position: $position) {
 				UserAnnotation()
 			}
+			.ignoresSafeArea(.all)
 			.onAppear() {
 				locationManager.getCurrentLocation()
 			}
-			.ignoresSafeArea(.all)
+			.onTapGesture {
+				debugPrint("boink")
+				showAnnotation = true
+			}
+			.sheet(isPresented: $showAnnotation) {
+				AnnotationView()
+					.presentationDetents([.medium])
+					.presentationDragIndicator(.visible)
+					.presentationBackgroundInteraction(.disabled)
+			}
 			
 			VStack {
 				Spacer()
 				HStack {
 					Button(action: {
-						debugPrint("favorites")
+						showFavorites = true
 					}) {
 						Image(systemName: "map.fill")
 							.resizable()
@@ -44,6 +63,11 @@ struct MapView: View {
 					.background(.purple)
 					.clipShape(Circle())
 					.shadow(radius: 4)
+					.sheet(isPresented: $showFavorites) {
+						FavoritesView()
+							.presentationDetents([.medium, .large])
+							.presentationDragIndicator(.visible)
+					}
 //					.overlay(
 //						RoundedRectangle(cornerRadius: 48)
 //							.stroke(Color.yellow, lineWidth: 2)
@@ -69,7 +93,7 @@ struct MapView: View {
 //					)
 					
 					Button(action: {
-						debugPrint("options")
+						showOptions = true
 					}) {
 						Image(systemName: "gearshape.fill")
 							.resizable()
@@ -81,6 +105,11 @@ struct MapView: View {
 					.background(.purple)
 					.clipShape(Circle())
 					.shadow(radius: 4)
+					.sheet(isPresented: $showOptions) {
+						OptionsView()
+							.presentationDetents([.large])
+							.presentationDragIndicator(.visible)
+					}
 //					.overlay(
 //						RoundedRectangle(cornerRadius: 48)
 //							.stroke(Color.yellow, lineWidth: 2)

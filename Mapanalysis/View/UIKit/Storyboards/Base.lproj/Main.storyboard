@@ -13,7 +13,7 @@
         <!--Maplysis-->
         <scene sceneID="lCI-Sb-hq1">
             <objects>
-                <viewController storyboardIdentifier="MapVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wR7-An-v0h" customClass="MapVC" customModule="Mapanalysis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wR7-An-v0h" customClass="MapVC" customModule="Mapanalysis_SwiftUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="JDF-Pp-uBO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,7 +26,7 @@
                                     <outletCollection property="gestureRecognizers" destination="Z2U-nV-cPm" appends="YES" id="K7l-Ys-vhZ"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsC-Q1-Fuv" customClass="MALocationButton" customModule="Mapanalysis" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsC-Q1-Fuv" customClass="MALocationButton" customModule="Mapanalysis_SwiftUI" customModuleProvider="target">
                                 <rect key="frame" x="164.66666666666666" y="696" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OsC-Q1-Fuv" secondAttribute="height" multiplier="1:1" id="RFt-UA-bVK"/>
@@ -127,7 +127,7 @@
         <!--AnnotationVC-->
         <scene sceneID="5Hp-Gm-phk">
             <objects>
-                <viewController storyboardIdentifier="AnnotationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LTQ-VC-Tca" customClass="AnnotationVC" customModule="Mapanalysis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AnnotationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LTQ-VC-Tca" customClass="AnnotationVC" customModule="Mapanalysis_SwiftUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y4h-ci-dal">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,7 +138,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6U-lu-D1X" userLabel="Address Header">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="15.666666666666666"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" systemColor="tertiaryLabelColor"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7M-Sl-VNz">
@@ -173,7 +173,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coordinates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYf-iM-hlN" userLabel="Coordinates Header">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="15.666666666666666"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" systemColor="tertiaryLabelColor"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WQG-DJ-aPr">
@@ -182,7 +182,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="latitude" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdi-AE-sV4">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <color key="textColor" systemColor="tertiaryLabelColor"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25,02145" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvP-iK-AjG">
@@ -202,7 +202,7 @@
                                                     <constraint firstAttribute="width" constant="80" id="2Zy-5S-EwJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <color key="textColor" systemColor="tertiaryLabelColor"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25,02145" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gua-Fk-XaB">
@@ -264,7 +264,7 @@
         <!--FavoritesVC-->
         <scene sceneID="nJa-92-u3N">
             <objects>
-                <tableViewController storyboardIdentifier="FavoritesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q6k-Q2-Zm4" customClass="FavoritesVC" customModule="Mapanalysis" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FavoritesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q6k-Q2-Zm4" customClass="FavoritesVC" customModule="Mapanalysis_SwiftUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="54" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="rvz-WD-rRP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -290,7 +290,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="favoriteCell" id="0KY-ob-jWz" customClass="FavoriteCell" customModule="Mapanalysis" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="favoriteCell" id="0KY-ob-jWz" customClass="FavoriteCell" customModule="Mapanalysis_SwiftUI" customModuleProvider="target">
                                 <rect key="frame" x="20" y="135.33333206176758" width="353" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0KY-ob-jWz" id="sxg-eg-6kU">
@@ -404,7 +404,7 @@ Go on! Add one...</string>
         <!--OptionsVC-->
         <scene sceneID="NZL-OR-qcI">
             <objects>
-                <tableViewController storyboardIdentifier="OptionsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjh-Ir-1dy" customClass="OptionsVC" customModule="Mapanalysis" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OptionsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjh-Ir-1dy" customClass="OptionsVC" customModule="Mapanalysis_SwiftUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="jwb-jH-6Xu">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -531,7 +531,7 @@ Go on! Add one...</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y7e-u7-jvo" customClass="MASegmentedControl" customModule="Mapanalysis" customModuleProvider="target">
+                                                <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y7e-u7-jvo" customClass="MASegmentedControl" customModule="Mapanalysis_SwiftUI" customModuleProvider="target">
                                                     <rect key="frame" x="46.666666666666657" y="46" width="260" height="32.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="t6G-vc-09x"/>
@@ -728,9 +728,6 @@ Should the need to create another showcase app arise (ex. Nominatim publishes a 
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

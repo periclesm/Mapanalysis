@@ -23,7 +23,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AppDelegate.swift,
-				AppPreferences.swift,
 				"Info-SUI.plist",
 				Info.plist,
 				SceneDelegate.swift,
@@ -38,10 +37,15 @@
 		6856015A2DFB185B00CE82A1 /* Exceptions for "Mapanalysis" folder in "Mapanalysis UIKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"/Localized: View/UIKit/Storyboards/Main.storyboard",
 				"Info-SUI.plist",
 				Info.plist,
 				Mapanalysis.swift,
+				View/SwiftUI/AnnotationView.swift,
+				View/SwiftUI/DeclarationView.swift,
+				View/SwiftUI/FavoritesView.swift,
 				View/SwiftUI/MapView.swift,
+				View/SwiftUI/OptionsView.swift,
 			);
 			target = 68E2D9FA2DFB05D900F3E0CF /* Mapanalysis UIKit */;
 		};

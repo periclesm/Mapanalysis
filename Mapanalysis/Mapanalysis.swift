@@ -9,6 +9,12 @@ import SwiftUI
 
 @main
 struct maplysis: App {
+	init() {
+		let permissionManager = LocationManager()
+		permissionManager.requestLocationPermission()
+		
+		AppPreferences.shared.loadFavoriteLocations()
+	}
 	var body: some Scene {
 		WindowGroup {
 			MapView()
