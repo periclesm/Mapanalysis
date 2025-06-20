@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AnnotationView: View {
-	@State private var annotation: Annotation?
+	var annotation: Annotation?
 	@State private var isFavorite = false
 	@State private var favoriteButtonTitle = "Add Favorite"
 	
@@ -53,7 +53,7 @@ struct AnnotationView: View {
 				Text("Longitude:")
 					.foregroundColor(.gray)
 					.font(.system(size: 13))
-				Text(annotation?.latitudeText ?? "--")
+				Text(annotation?.longtitudeText ?? "--")
 			}
 			Spacer()
 			

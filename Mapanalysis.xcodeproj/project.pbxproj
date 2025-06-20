@@ -13,7 +13,6 @@
 
 /* Begin PBXFileReference section */
 		681AD0F92E0319300007DF87 /* Mapanalysis SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapanalysis SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		681AD0FB2E0319300007DF87 /* Mapanalysis copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Mapanalysis copy-Info.plist"; path = "/Users/pericles/Vaults/CodeVault/OpenSource/Mapanalysis/Mapanalysis copy-Info.plist"; sourceTree = "<absolute>"; };
 		68E2D9FB2DFB05D900F3E0CF /* Mapanalysis UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapanalysis UIKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68E2DA142DFB063E00F3E0CF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -22,6 +21,7 @@
 		681AD0FA2E0319300007DF87 /* Exceptions for "Mapanalysis" folder in "Mapanalysis SwiftUI" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"/Localized: View/UIKit/Storyboards/Main.storyboard",
 				AppDelegate.swift,
 				"Info-SUI.plist",
 				Info.plist,
@@ -37,13 +37,13 @@
 		6856015A2DFB185B00CE82A1 /* Exceptions for "Mapanalysis" folder in "Mapanalysis UIKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"/Localized: View/UIKit/Storyboards/Main.storyboard",
 				"Info-SUI.plist",
 				Info.plist,
 				Mapanalysis.swift,
 				View/SwiftUI/AnnotationView.swift,
 				View/SwiftUI/DeclarationView.swift,
 				View/SwiftUI/FavoritesView.swift,
+				View/SwiftUI/MapRepresentable.swift,
 				View/SwiftUI/MapView.swift,
 				View/SwiftUI/OptionsView.swift,
 			);
@@ -88,7 +88,6 @@
 			children = (
 				68E2D9FD2DFB05D900F3E0CF /* Mapanalysis */,
 				68E2DA132DFB063E00F3E0CF /* Frameworks */,
-				681AD0FB2E0319300007DF87 /* Mapanalysis copy-Info.plist */,
 				68E2D9FC2DFB05D900F3E0CF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -241,7 +240,7 @@
 				DEVELOPMENT_TEAM = AFNBPBD3C5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mapanalysis/Info-SUI.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Maplysis;
+				INFOPLIST_KEY_CFBundleDisplayName = "Maplysis SUI";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show nearby places.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide full map functionality.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -254,7 +253,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = eu.clfd.maplysis;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.clfd.maplysis.sui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -278,7 +277,7 @@
 				DEVELOPMENT_TEAM = AFNBPBD3C5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mapanalysis/Info-SUI.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Maplysis;
+				INFOPLIST_KEY_CFBundleDisplayName = "Maplysis SUI";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show nearby places.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide full map functionality.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -291,7 +290,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = eu.clfd.maplysis;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.clfd.maplysis.sui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

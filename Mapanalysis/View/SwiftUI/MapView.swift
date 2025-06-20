@@ -9,19 +9,8 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-	@StateObject private var locationManager = LocationManager()
-	
-	@State private var position = MapCameraPosition.region(
-		MKCoordinateRegion(
-			center: CLLocationCoordinate2D(latitude: 37.9710, longitude: 23.7285),
-			span: MKCoordinateSpan(latitudeDelta: AppPreferences.shared.mapZoom / 100000,
-								   longitudeDelta: AppPreferences.shared.mapZoom / 100000)
-			/*
-			 Division by 100000 is the factor between the UIKit value and SwiftUI value for maps.
-			 Normally it should not be like this but I have this app on both UIKit and SwiftUI so something must look wierd somewhere... :S
-			 */
-		)
-	)
+	@State private var annotation: Annotation?
+	@State private var coordinate: CLLocationCoordinate2D? = nil
 	
 	@State private var showOptions = false
 	@State private var showFavorites = false
@@ -29,22 +18,18 @@ struct MapView: View {
 	
     var body: some View {
 		ZStack {
-			Map(position: $position) {
-				UserAnnotation()
-			}
-			.ignoresSafeArea(.all)
-			.onAppear() {
-				locationManager.getCurrentLocation()
-			}
-			.onTapGesture {
-				debugPrint("boink")
+			MapRepresentable(coordinate: $coordinate,
+							 annotation: $annotation,
+							 showAnnotation: $showAnnotation) { coordinate in
+				debugPrint("Coordinate is: \(coordinate.latitude) lat, \(coordinate.longitude) long")
 				showAnnotation = true
 			}
+			.edgesIgnoringSafeArea(.all)
 			.sheet(isPresented: $showAnnotation) {
-				AnnotationView()
-					.presentationDetents([.medium])
-					.presentationDragIndicator(.visible)
-					.presentationBackgroundInteraction(.disabled)
+					AnnotationView(annotation: annotation)
+						.presentationDetents([.medium])
+						.presentationDragIndicator(.visible)
+						.presentationBackgroundInteraction(.disabled)
 			}
 			
 			VStack {

@@ -48,14 +48,14 @@ class MapVC: UIViewController {
 		}
 		
 		dvc.continuousUpdates = { enabled in
-			self.updateLocation()
+			self.showUserLocation()
 		}
 	}
 	
 	private func bindFavorites(_ dvc: FavoritesVC) {
 		dvc.presentAnnotation = { [weak self] annotation in
 			let location = CLLocation(latitude: annotation.latitude, longitude: annotation.longitude)
-			self?.showLocation(on: location, userInitiated: true)
+			self?.showTappedLocation(on: location, userInitiated: true)
 		}
 	}
 	
@@ -63,16 +63,17 @@ class MapVC: UIViewController {
 	
 	private func setupUI() {
 		locationButton.setState(state: .standard)
+		
+		//Set options and map type, ask for Permissions and update location
 		mapOptions()
 		setmapType(type: AppPreferences.shared.mapType)
 		
-		locationManager.requestLocationPermission()
-		updateLocation()
-		
 		locationManager.onLocationUpdate = { [weak self] location in
-			self?.showLocation(on: location, userInitiated: false)
+			self?.showTappedLocation(on: location, userInitiated: false)
 		}
 	}
+	
+	//MARK: - Map configuration and functions
 	
 	func mapOptions() {
 		mapView.showsLargeContentViewer = true
@@ -101,9 +102,7 @@ class MapVC: UIViewController {
 		}
 	}
 	
-	//MARK: - Map functionality
-	
-	func showLocation(on location: CLLocation, userInitiated: Bool) {
+	func showTappedLocation(on location: CLLocation, userInitiated: Bool) {
 		mapView.removeAnnotations(mapView.annotations)
 		
 		let region = MKCoordinateRegion(
@@ -154,7 +153,9 @@ class MapVC: UIViewController {
 		mapView.addAnnotation(pin)
 	}
 	
-	@IBAction func updateLocation() {
+	//MARK: - IBActions
+	
+	@IBAction func showUserLocation() {
 		if AppPreferences.shared.continuousUpdates {
 			if locationManager.isUpdating {
 				locationManager.stopLocationUpdates()
@@ -178,6 +179,6 @@ class MapVC: UIViewController {
 		
 		//Recenter Map
 		let tappedLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-		showLocation(on: tappedLocation, userInitiated: true)
+		showTappedLocation(on: tappedLocation, userInitiated: true)
 	}
 }

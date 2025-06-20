@@ -44,7 +44,7 @@
                                     <color key="baseForegroundColor" systemColor="systemYellowColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="updateLocation" destination="wR7-An-v0h" eventType="touchUpInside" id="dzN-r8-Gbj"/>
+                                    <action selector="showUserLocation" destination="wR7-An-v0h" eventType="touchUpInside" id="xwU-0T-MjJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JxI-0G-mBy" userLabel="OptionsButton">

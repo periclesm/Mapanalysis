@@ -50,6 +50,10 @@
             ReferencedContainer = "container:Mapanalysis.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <LocationScenarioReference
+         identifier = "../../Mapanalysis/AcropolisMuseum.gpx"
+         referenceType = "0">
+      </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
