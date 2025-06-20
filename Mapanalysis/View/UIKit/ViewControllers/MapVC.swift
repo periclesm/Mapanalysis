@@ -75,16 +75,19 @@ class MapVC: UIViewController {
 	}
 	
 	func mapOptions() {
-		let enableAdditionalMapElements = true
-		
-		mapView.showsLargeContentViewer = enableAdditionalMapElements
-		
-		if mapView.mapType == .standard || mapView.mapType == .hybrid || mapView.mapType == .hybridFlyover {
-			mapView.showsTraffic = enableAdditionalMapElements
-		}
-		else {
-			mapView.showsTraffic = false
-		}
+		mapView.showsLargeContentViewer = true
+		mapView.showsUserLocation = true
+		mapView.showsScale = true
+		mapView.showsCompass = true
+		mapView.showsBuildings = true
+		mapView.showsTraffic = {
+			switch mapView.mapType {
+				case .standard, .hybrid, .hybridFlyover:
+					true
+				default:
+					false
+			}
+		}()
 	}
 	
 	func setmapType(type: MapType) {

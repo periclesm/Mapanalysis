@@ -18,18 +18,19 @@ struct OptionsView: View {
 		ZStack {
 			VStack {
 				Spacer()
+				
 				Text("Options")
 					.foregroundColor(.white)
 					.font(.system(size: 28, weight: .bold))
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding(.leading, 20)
 					.padding(.top, 20)
+				
 				List {
 					Section(header: Text("Location Update"),
 							footer: Text("When the setting is off, the device will ask once for the current location. Otherwise, it will request location updates at timed intervals and will stop by pressing the location button again.")) {
 						Toggle("Continious Location Updates", isOn: $continiousUpdates)
-							.padding(.top, 3)
-							.padding(.bottom, 3)
+							.font(.system(size: 15))
 							.tint(Color.purple)
 							.onChange(of: continiousUpdates) { oldValue, newValue in
 								AppPreferences.shared.continuousUpdates = newValue
@@ -39,6 +40,7 @@ struct OptionsView: View {
 					Section(header: Text("Map Display")) {
 						VStack(alignment: .leading) {
 							Text("Map zoom distance (in meters)").multilineTextAlignment(.leading)
+								.font(.system(size: 15))
 							HStack {
 								Text("100").foregroundColor(.gray).font(.system(size: 12))
 								Slider(value: $mapZoom, in: 100...1000).accentColor(.purple)
@@ -46,9 +48,7 @@ struct OptionsView: View {
 										AppPreferences.shared.mapZoom = newValue
 									}
 								Text("1000").foregroundColor(.gray).font(.system(size: 12))
-							}
-							.padding(.top, 2)
-							.padding(.bottom, 2)
+							}.padding(.vertical, 10)
 						}
 						
 						VStack(alignment: .leading) {
@@ -57,44 +57,41 @@ struct OptionsView: View {
 								Text("Satellite").tag(MapType.satellite)
 								Text("Hybrid").tag(MapType.hybrid)
 							}
+							.font(.system(size: 15))
 							.onChange(of: mapType, { oldValue, newValue in
 								AppPreferences.shared.mapType = newValue
 							})
-							.padding(.top, 2)
-							.padding(.bottom, 2)
 						}
 					}
 					
 					Section(header: Text("Geocoding"),
 							footer: Text("Resolving location coordinates from address (geocoding) or the address from coordinates (reverse geocoding) using the selected service.")) {
-						Picker("Geocoding Provider\n(forward & reverse)", selection: $geocoder) {
+						Picker("Geocoding Provider", selection: $geocoder) {
 							Text("Apple Maps").tag(GeocoderService.apple)
-							Text("Google Maps").tag(GeocoderService.google).disabled(true)
-							Text("Bing Maps").tag(GeocoderService.bing).disabled(true)
+							Text("Google Maps").disabled(true)
+								//.tag(GeocoderService.google)
+							Text("Bing Maps").disabled(true)
+								//.tag(GeocoderService.bing)
 								.onChange(of: mapType, { oldValue, newValue in
 									AppPreferences.shared.mapType = newValue
 								})
 						}
-						.padding(.top, 2)
-						.padding(.bottom, 2)
+						.font(.system(size: 15))
 						
 						Button(action: {
 							showDeclaration = true
 						}) {
 							HStack {
-								Text("Why Google and Bing geocoders are not supported?")
-									.font(.system(size: 14))
+								Text("Why Google and Bing geocoding are disabled?")
 									.foregroundColor(.primary)
 								Spacer()
 								Image(systemName: "chevron.right")
 									.foregroundColor(.gray)
 							}
+							.font(.system(size: 13))
 							.contentShape(Rectangle())
-							.padding(.top, 2)
-							.padding(.bottom, 2)
 						}
 						.sheet(isPresented: $showDeclaration) {
-							// Your modal view
 							DeclarationView()
 						}
 					}
