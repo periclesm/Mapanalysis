@@ -38,16 +38,16 @@ class MapVC: UIViewController {
 	}
 	
 	private func bindOptions(_ dvc: OptionsVC) {
-		dvc.mapUpdate = {
+		dvc.setMapType = {
 			self.setmapType(type: AppPreferences.shared.mapType)
 		}
 		
-		dvc.locationUpdate = {
+		dvc.setMapZoomLevel = {
 			debugPrint("Location update requested")
-			//self.displayLocation()
+			self.zoomCurrentLocation()
 		}
 		
-		dvc.continuousUpdates = { enabled in
+		dvc.setContinuousUpdates = { enabled in
 			self.showUserLocation()
 		}
 	}
@@ -131,6 +131,12 @@ class MapVC: UIViewController {
 		} else {
 			mapView.setRegion(region, animated: true)
 		}
+	}
+	
+	func zoomCurrentLocation() {
+		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+		showTappedLocation(on: location, userInitiated: false)
+		
 	}
 	
 	//Use it to center the map over the Annotation Point

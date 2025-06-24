@@ -71,10 +71,14 @@ class AnnotationVC: UIViewController {
 	private func setButtonTitle() {
 		guard let annotation else { return }
 		
-		if AppPreferences.shared.favorites.contains(annotation) {
-			favoriteButton.setTitle("Remove Favorite", for: .normal)
-		} else {
-			favoriteButton.setTitle("Add Favorite", for: .normal)
-		}
+		UIView.animate(withDuration: 0.3, animations: {
+			if AppPreferences.shared.favorites.contains(annotation) {
+				self.favoriteButton.setTitle("Remove Favorite", for: .normal)
+			} else {
+				self.favoriteButton.setTitle("Add Favorite", for: .normal)
+			}
+			
+			self.favoriteButton.superview?.layoutIfNeeded()
+		})
 	}
 }

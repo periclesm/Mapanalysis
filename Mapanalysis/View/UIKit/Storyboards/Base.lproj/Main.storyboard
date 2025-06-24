@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wR7-An-v0h">
-    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -430,8 +430,7 @@ Go on! Add one...</string>
                             </constraints>
                         </view>
                         <sections>
-                            <tableViewSection headerTitle="Location Update" id="ME9-MO-csU">
-                                <string key="footerTitle">When the setting is off, the device will ask once for the current location. Otherwise, it will request location updates at timed intervals and will stop by pressing the location button again.</string>
+                            <tableViewSection headerTitle="Location Update" footerTitle="When off, the device will ask only once for the current location." id="ME9-MO-csU">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="6QC-ZS-8sp">
                                         <rect key="frame" x="20" y="135.33333206176758" width="353" height="50"/>
@@ -450,7 +449,7 @@ Go on! Add one...</string>
                                                     <rect key="frame" x="288" y="9.6666666666666643" width="51" height="31"/>
                                                     <color key="onTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
-                                                        <action selector="setContinuousUpdating" destination="Cjh-Ir-1dy" eventType="valueChanged" id="WiH-Fj-7s3"/>
+                                                        <action selector="continuousUpdatesAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="WaP-vb-Qkv"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -469,7 +468,7 @@ Go on! Add one...</string>
                             <tableViewSection headerTitle="Map Display" id="IUE-s9-eJf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="4x5-eI-jbL">
-                                        <rect key="frame" x="20" y="301.33332824707031" width="353" height="92.333335876464844"/>
+                                        <rect key="frame" x="20" y="269.33333015441895" width="353" height="92.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4x5-eI-jbL" id="6x2-ey-2Fs">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="92.333335876464844"/>
@@ -485,7 +484,7 @@ Go on! Add one...</string>
                                                     <rect key="frame" x="42.666666666666657" y="46" width="260.33333333333337" height="31.333333333333329"/>
                                                     <color key="minimumTrackTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
-                                                        <action selector="setMapZoomLevel" destination="Cjh-Ir-1dy" eventType="valueChanged" id="JKz-x7-BGw"/>
+                                                        <action selector="mapZoomLevelAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="wnJ-sJ-ePk"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QqG-cZ-HLg">
@@ -519,7 +518,7 @@ Go on! Add one...</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="U4W-kP-FQq">
-                                        <rect key="frame" x="20" y="393.66666412353516" width="353" height="93.333335876464844"/>
+                                        <rect key="frame" x="20" y="361.66666603088379" width="353" height="93.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U4W-kP-FQq" id="7ZY-R5-jGB">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="93.333335876464844"/>
@@ -531,7 +530,7 @@ Go on! Add one...</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y7e-u7-jvo" customClass="MASegmentedControl" customModule="Mapanalysis_UIKit" customModuleProvider="target">
+                                                <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y7e-u7-jvo">
                                                     <rect key="frame" x="46.666666666666657" y="46" width="260" height="32.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="t6G-vc-09x"/>
@@ -543,7 +542,7 @@ Go on! Add one...</string>
                                                     </segments>
                                                     <color key="selectedSegmentTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
-                                                        <action selector="setMapType" destination="Cjh-Ir-1dy" eventType="valueChanged" id="tFp-h7-yrg"/>
+                                                        <action selector="mapTypeAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="UGQ-nZ-v4p"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
@@ -560,11 +559,10 @@ Go on! Add one...</string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Geocoding" id="7iQ-Tp-6yI">
-                                <string key="footerTitle">Resolving location coordinates from address (geocoding) or the address from coordinates (reverse geocoding) using the selected service.</string>
+                            <tableViewSection headerTitle="Geocoding" footerTitle="Forward (from address) and reverse (from coordinates) geocoding setup." id="7iQ-Tp-6yI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="JG8-2N-Rce">
-                                        <rect key="frame" x="20" y="549.66666603088379" width="353" height="93.333335876464844"/>
+                                        <rect key="frame" x="20" y="517.66666793823242" width="353" height="93.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JG8-2N-Rce" id="6U4-Qi-Tgs">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="93.333335876464844"/>
@@ -573,7 +571,7 @@ Go on! Add one...</string>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="1tR-s4-l9W">
                                                     <rect key="frame" x="16" y="16.000000000000004" width="321" height="61.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Geocoding provider (forward &amp; reverse)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Na-o7-TfG">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Geocoding provider" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Na-o7-TfG">
                                                             <rect key="frame" x="0.0" y="0.0" width="321" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -607,31 +605,35 @@ Go on! Add one...</string>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="bEf-mp-clb">
-                                        <rect key="frame" x="20" y="643.00000190734863" width="353" height="32"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="5CX-IJ-za8" userLabel="Info">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="YgX-z8-XqG">
+                                        <rect key="frame" x="20" y="674.66666984558105" width="353" height="68.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bEf-mp-clb" id="es0-dJ-QyJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="32"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YgX-z8-XqG" id="UCT-xc-KPs">
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="68.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Why Google and Bing geocoding are disabled?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-l2-frw">
-                                                    <rect key="frame" x="16" y="8" width="290.66666666666669" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Why Google and Bing geocoding are disabled?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzQ-oe-ob5">
+                                                    <rect key="frame" x="16" y="16.000000000000004" width="290.66666666666669" height="36.333333333333343"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="G2X-l2-frw" firstAttribute="top" secondItem="es0-dJ-QyJ" secondAttribute="top" constant="8" id="9HE-Lw-S5w"/>
-                                                <constraint firstAttribute="trailing" secondItem="G2X-l2-frw" secondAttribute="trailing" constant="16" id="Ccj-gu-JwT"/>
-                                                <constraint firstAttribute="bottom" secondItem="G2X-l2-frw" secondAttribute="bottom" constant="8" id="QIK-2s-k21"/>
-                                                <constraint firstItem="G2X-l2-frw" firstAttribute="leading" secondItem="es0-dJ-QyJ" secondAttribute="leading" constant="16" id="V8F-m0-j3l"/>
+                                                <constraint firstAttribute="bottom" secondItem="fzQ-oe-ob5" secondAttribute="bottom" constant="16" id="4WU-Du-YPI"/>
+                                                <constraint firstAttribute="trailing" secondItem="fzQ-oe-ob5" secondAttribute="trailing" constant="16" id="Ohv-cw-KBm"/>
+                                                <constraint firstItem="fzQ-oe-ob5" firstAttribute="top" secondItem="UCT-xc-KPs" secondAttribute="top" constant="16" id="Xfi-or-Moe"/>
+                                                <constraint firstItem="fzQ-oe-ob5" firstAttribute="leading" secondItem="UCT-xc-KPs" secondAttribute="leading" constant="16" id="dA0-Y0-eJi"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <segue destination="rZ1-cE-wmo" kind="presentation" id="osc-ym-DXo"/>
+                                            <segue destination="rZ1-cE-wmo" kind="presentation" identifier="UnavailableSegue" modalPresentationStyle="pageSheet" id="cnt-Ua-MIP"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

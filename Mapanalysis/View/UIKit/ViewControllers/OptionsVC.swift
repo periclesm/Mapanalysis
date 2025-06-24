@@ -13,19 +13,29 @@ class OptionsVC: UITableViewController {
 	@IBOutlet weak var mapZoomSlider: UISlider!
 	@IBOutlet weak var mapTypeSegment: UISegmentedControl!
 	
-	var continuousUpdates: ((Bool) -> Void)?
-	var mapUpdate: (() -> Void)?
-	var locationUpdate: (() -> Void)?
+	var setContinuousUpdates: ((Bool) -> Void)?
+	var setMapType: (() -> Void)?
+	var setMapZoomLevel: (() -> Void)?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()
 	}
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		switch segue.identifier {
+			case "UnavailableSegue":
+				let dvc = segue.destination
+				dvc.sheetPresentationController?.prefersGrabberVisible = true
+				
+			default : break
+		}
+	}
+	
 	func setupUI() {
 		sheetPresentationController?.prefersGrabberVisible = true
 		sheetPresentationController?.largestUndimmedDetentIdentifier = .none
-		sheetPresentationController?.detents = [ .large() ]
+		sheetPresentationController?.detents = [ .medium(), .large() ]
 		
 		continiousLocationUpdateSwitch.isOn = AppPreferences.shared.continuousUpdates
 		mapZoomSlider.value = Float(AppPreferences.shared.mapZoom)
@@ -34,19 +44,19 @@ class OptionsVC: UITableViewController {
 	
 	//MARK: - IBActions
 	
-	@IBAction func setContinuousUpdating() {
-		AppPreferences.shared.continuousUpdates = continiousLocationUpdateSwitch.isOn
-		continuousUpdates?(continiousLocationUpdateSwitch.isOn)
+	@IBAction func continuousUpdatesAction(_ sender: UISwitch) {
+		AppPreferences.shared.continuousUpdates = sender.isOn
+		setContinuousUpdates?(sender.isOn)
 	}
 	
-	@IBAction func setMapZoomLevel() {
-		AppPreferences.shared.mapZoom = Double(mapZoomSlider.value)
-		locationUpdate?()
+	@IBAction func mapZoomLevelAction(_ sender: UISlider) {
+		AppPreferences.shared.mapZoom = Double(sender.value)
+		setMapZoomLevel?()
 	}
 	
-	@IBAction func setMapType() {
-		AppPreferences.shared.mapType = MapType(rawValue: mapTypeSegment.selectedSegmentIndex)!
-		mapUpdate?()
+	@IBAction func mapTypeAction(_ sender: UISegmentedControl) {
+		AppPreferences.shared.mapType = MapType(rawValue: sender.selectedSegmentIndex)!
+		setMapType?()
 	}
 	
 	//MARK: - TableView
