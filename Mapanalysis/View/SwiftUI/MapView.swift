@@ -11,6 +11,7 @@ import MapKit
 struct MapView: View {
 	@State private var annotation: Annotation?
 	@State private var coordinate: CLLocationCoordinate2D? = nil
+	@State private var mapType: MapType = AppPreferences.shared.mapType
 	
 	@State private var showOptions = false
 	@State private var showFavorites = false
@@ -20,7 +21,8 @@ struct MapView: View {
 		ZStack {
 			MapRepresentable(coordinate: $coordinate,
 							 annotation: $annotation,
-							 showAnnotation: $showAnnotation) { coordinate in
+							 showAnnotation: $showAnnotation,
+							 mapType: mapType) { coordinate in
 				debugPrint("Coordinate is: \(coordinate.latitude) lat, \(coordinate.longitude) long")
 				showAnnotation = true
 			}
@@ -91,7 +93,7 @@ struct MapView: View {
 					.clipShape(Circle())
 					.shadow(radius: 4)
 					.sheet(isPresented: $showOptions) {
-						OptionsView()
+						OptionsView(mapType: $mapType)
 							.presentationDetents([.large])
 							.presentationDragIndicator(.visible)
 					}

@@ -12,6 +12,7 @@ struct MapRepresentable: UIViewRepresentable {
 	@Binding var coordinate: CLLocationCoordinate2D?
 	@Binding var annotation: Annotation?
 	@Binding var showAnnotation: Bool
+	var mapType: MapType
 	
 	let locationManager = LocationManager()
 	var onTap: ((CLLocationCoordinate2D) -> Void)? = nil
@@ -36,7 +37,7 @@ struct MapRepresentable: UIViewRepresentable {
 	}
 	
 	func updateUIView(_ uiView: MKMapView, context: Context) {
-		//nothing thanks.
+		setmapType(type: mapType, in: uiView)
 	}
 	
 	static func dismantleUIView(_ uiView: MKMapView, coordinator: Coordinator) {

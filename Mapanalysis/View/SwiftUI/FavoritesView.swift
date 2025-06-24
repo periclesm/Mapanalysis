@@ -92,5 +92,4 @@ struct AnnotationRow: View {
 
 #Preview {
     FavoritesView()
-	//AnnotationRow()
 }

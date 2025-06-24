@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OptionsView: View {
 	@State var continiousUpdates = AppPreferences.shared.continuousUpdates
-	@State var mapType: MapType = AppPreferences.shared.mapType
+	@Binding var mapType: MapType
 	@State var mapZoom = AppPreferences.shared.mapZoom
 	@State var geocoder: GeocoderService = AppPreferences.shared.geocoder
 	@State private var showDeclaration = false
@@ -103,5 +103,5 @@ struct OptionsView: View {
 }
 
 #Preview {
-	OptionsView()
+	OptionsView(mapType: .constant(.standard))
 }
