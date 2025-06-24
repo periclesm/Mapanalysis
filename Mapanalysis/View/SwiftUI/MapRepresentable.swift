@@ -13,6 +13,7 @@ struct MapRepresentable: UIViewRepresentable {
 	@Binding var annotation: Annotation?
 	@Binding var showAnnotation: Bool
 	var mapType: MapType
+	var mapZoom: Double
 	
 	let locationManager = LocationManager()
 	var onTap: ((CLLocationCoordinate2D) -> Void)? = nil
@@ -27,7 +28,7 @@ struct MapRepresentable: UIViewRepresentable {
 		
 		//Set options and map type, ask for Permissions and update location
 		mapOptions(mapView)
-		setmapType(type: AppPreferences.shared.mapType, in: mapView)
+		setMapType(in: mapView)
 		
 		locationManager.onLocationUpdate = { location in
 			showLocation(location, mapView: mapView)
@@ -37,7 +38,8 @@ struct MapRepresentable: UIViewRepresentable {
 	}
 	
 	func updateUIView(_ uiView: MKMapView, context: Context) {
-		setmapType(type: mapType, in: uiView)
+		setMapType(in: uiView)
+		setMapZoom(in: uiView)
 	}
 	
 	static func dismantleUIView(_ uiView: MKMapView, coordinator: Coordinator) {
@@ -67,8 +69,8 @@ struct MapRepresentable: UIViewRepresentable {
 		}()
 	}
 	
-	func setmapType(type: MapType, in mapView: MKMapView) {
-		switch type {
+	func setMapType(in mapView: MKMapView) {
+		switch mapType {
 			case .standard:
 				mapView.mapType = .standard
 			case .satellite:
@@ -76,6 +78,19 @@ struct MapRepresentable: UIViewRepresentable {
 			case .hybrid:
 				mapView.mapType = .hybridFlyover
 		}
+	}
+	
+	func setMapZoom(in mapView: MKMapView) {
+		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+		
+		mapView.setRegion(
+			MKCoordinateRegion(
+				center: location.coordinate,
+				latitudinalMeters: mapZoom,
+				longitudinalMeters: mapZoom
+			),
+			animated: true
+		)
 	}
 	
 	func showUserLocation() {

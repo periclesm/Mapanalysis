@@ -12,6 +12,7 @@ struct MapView: View {
 	@State private var annotation: Annotation?
 	@State private var coordinate: CLLocationCoordinate2D? = nil
 	@State private var mapType: MapType = AppPreferences.shared.mapType
+	@State private var mapZoom = AppPreferences.shared.mapZoom
 	
 	@State private var showOptions = false
 	@State private var showFavorites = false
@@ -22,7 +23,7 @@ struct MapView: View {
 			MapRepresentable(coordinate: $coordinate,
 							 annotation: $annotation,
 							 showAnnotation: $showAnnotation,
-							 mapType: mapType) { coordinate in
+							 mapType: mapType, mapZoom: mapZoom) { coordinate in
 				debugPrint("Coordinate is: \(coordinate.latitude) lat, \(coordinate.longitude) long")
 				showAnnotation = true
 			}
@@ -55,10 +56,6 @@ struct MapView: View {
 							.presentationDetents([.medium, .large])
 							.presentationDragIndicator(.visible)
 					}
-//					.overlay(
-//						RoundedRectangle(cornerRadius: 48)
-//							.stroke(Color.yellow, lineWidth: 2)
-//					)
 					
 					Button(action: {
 						debugPrint("location")
@@ -93,14 +90,10 @@ struct MapView: View {
 					.clipShape(Circle())
 					.shadow(radius: 4)
 					.sheet(isPresented: $showOptions) {
-						OptionsView(mapType: $mapType)
-							.presentationDetents([.large])
+						OptionsView(mapType: $mapType, mapZoom: $mapZoom)
+							.presentationDetents([.medium, .large])
 							.presentationDragIndicator(.visible)
 					}
-//					.overlay(
-//						RoundedRectangle(cornerRadius: 48)
-//							.stroke(Color.yellow, lineWidth: 2)
-//					)
 				}
 				.padding(.bottom, 24)
 			}

@@ -10,7 +10,7 @@ import SwiftUI
 struct OptionsView: View {
 	@State var continiousUpdates = AppPreferences.shared.continuousUpdates
 	@Binding var mapType: MapType
-	@State var mapZoom = AppPreferences.shared.mapZoom
+	@Binding var mapZoom: Double
 	@State var geocoder: GeocoderService = AppPreferences.shared.geocoder
 	@State private var showDeclaration = false
 	
@@ -28,7 +28,7 @@ struct OptionsView: View {
 				
 				List {
 					Section(header: Text("Location Update"),
-							footer: Text("When the setting is off, the device will ask once for the current location. Otherwise, it will request location updates at timed intervals and will stop by pressing the location button again.")) {
+							footer: Text("When off, the device will ask only once for the current location.")) {
 						Toggle("Continious Location Updates", isOn: $continiousUpdates)
 							.font(.system(size: 15))
 							.tint(Color.purple)
@@ -65,7 +65,7 @@ struct OptionsView: View {
 					}
 					
 					Section(header: Text("Geocoding"),
-							footer: Text("Resolving location coordinates from address (geocoding) or the address from coordinates (reverse geocoding) using the selected service.")) {
+							footer: Text("Forward (from address) and reverse (from coordinates) geocoding setup.")) {
 						Picker("Geocoding Provider", selection: $geocoder) {
 							Text("Apple Maps").tag(GeocoderService.apple)
 							Text("Google Maps").disabled(true)
@@ -77,7 +77,9 @@ struct OptionsView: View {
 								})
 						}
 						.font(.system(size: 15))
-						
+					}
+					
+					Section {
 						Button(action: {
 							showDeclaration = true
 						}) {
@@ -88,11 +90,13 @@ struct OptionsView: View {
 								Image(systemName: "chevron.right")
 									.foregroundColor(.gray)
 							}
-							.font(.system(size: 13))
+							.font(.system(size: 15))
 							.contentShape(Rectangle())
+							.padding(.vertical, 2)
 						}
 						.sheet(isPresented: $showDeclaration) {
 							DeclarationView()
+								.presentationDragIndicator(.visible)
 						}
 					}
 				}
@@ -103,5 +107,5 @@ struct OptionsView: View {
 }
 
 #Preview {
-	OptionsView(mapType: .constant(.standard))
+	OptionsView(mapType: .constant(.standard), mapZoom: .constant(800))
 }
