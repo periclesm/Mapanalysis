@@ -26,7 +26,7 @@
                                     <outletCollection property="gestureRecognizers" destination="Z2U-nV-cPm" appends="YES" id="K7l-Ys-vhZ"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsC-Q1-Fuv" customClass="MALocationButton" customModule="Mapanalysis_UIKit" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsC-Q1-Fuv">
                                 <rect key="frame" x="164.66666666666666" y="696" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OsC-Q1-Fuv" secondAttribute="height" multiplier="1:1" id="RFt-UA-bVK"/>
@@ -37,14 +37,15 @@
                                 <state key="normal" image="location.fill" catalog="system"/>
                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
                                     <imageReference key="image" image="location" catalog="system" renderingMode="template"/>
-                                    <backgroundConfiguration key="background" strokeWidth="1" strokeOutset="2">
-                                        <color key="strokeColor" systemColor="systemOrangeColor"/>
+                                    <backgroundConfiguration key="background" strokeWidth="2" strokeOutset="3">
+                                        <color key="strokeColor" systemColor="systemMintColor"/>
                                     </backgroundConfiguration>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="19" weight="medium"/>
                                     <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="showUserLocation" destination="wR7-An-v0h" eventType="touchUpInside" id="xwU-0T-MjJ"/>
+                                    <action selector="centerToUserLocation" destination="wR7-An-v0h" eventType="touchUpInside" id="AmQ-Nx-jgq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JxI-0G-mBy" userLabel="OptionsButton">
@@ -60,6 +61,7 @@
                                     </backgroundConfiguration>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
                                     <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="Cjh-Ir-1dy" kind="presentation" identifier="OptionsSegue" modalPresentationStyle="pageSheet" id="kyq-BY-SK4"/>
@@ -78,6 +80,7 @@
                                     </backgroundConfiguration>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
                                     <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="q6k-Q2-Zm4" kind="presentation" identifier="FavoritesSegue" modalPresentationStyle="pageSheet" id="gW3-12-NXd"/>
@@ -108,7 +111,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="locationButton" destination="OsC-Q1-Fuv" id="g5t-cP-wIQ"/>
+                        <outlet property="locationButton" destination="OsC-Q1-Fuv" id="P95-oq-bg4"/>
                         <outlet property="mapTap" destination="Z2U-nV-cPm" id="APJ-0k-4ra"/>
                         <outlet property="mapView" destination="hax-cM-0k5" id="PxI-LQ-YFa"/>
                         <segue destination="LTQ-VC-Tca" kind="presentation" identifier="AnnotationSegue" modalPresentationStyle="pageSheet" id="dQd-ls-McX"/>
@@ -439,17 +442,17 @@ Go on! Add one...</string>
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Continuous location updates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deZ-xO-rYC">
-                                                    <rect key="frame" x="16" y="16" width="196" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Center map on user location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deZ-xO-rYC">
+                                                    <rect key="frame" x="16" y="16" width="193.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HWs-Eb-KRI">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWs-Eb-KRI">
                                                     <rect key="frame" x="288" y="9.6666666666666643" width="51" height="31"/>
                                                     <color key="onTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
-                                                        <action selector="continuousUpdatesAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="WaP-vb-Qkv"/>
+                                                        <action selector="centerMapAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="7EO-Op-vw7"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -463,12 +466,43 @@ Go on! Add one...</string>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="uFh-Vb-9vS">
+                                        <rect key="frame" x="20" y="185.33333206176758" width="353" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uFh-Vb-9vS" id="BtA-db-hAT">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Show heading when following user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3T-s8-9s1">
+                                                    <rect key="frame" x="15.999999999999986" y="16" width="236.66666666666663" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RUL-0P-RiM">
+                                                    <rect key="frame" x="288" y="9.6666666666666643" width="51" height="31"/>
+                                                    <color key="onTintColor" systemColor="systemPurpleColor"/>
+                                                    <connections>
+                                                        <action selector="headingOnMapAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="DEC-jc-K6V"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RUL-0P-RiM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q3T-s8-9s1" secondAttribute="trailing" constant="8" id="IxF-ia-xCz"/>
+                                                <constraint firstItem="Q3T-s8-9s1" firstAttribute="leading" secondItem="BtA-db-hAT" secondAttribute="leading" constant="16" id="Nvn-eK-lCr"/>
+                                                <constraint firstAttribute="trailing" secondItem="RUL-0P-RiM" secondAttribute="trailing" constant="16" id="k9O-fd-Xye"/>
+                                                <constraint firstItem="Q3T-s8-9s1" firstAttribute="centerY" secondItem="RUL-0P-RiM" secondAttribute="centerY" id="sBH-Gn-tWl"/>
+                                                <constraint firstItem="RUL-0P-RiM" firstAttribute="centerY" secondItem="BtA-db-hAT" secondAttribute="centerY" id="ygf-5W-pD1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Map Display" id="IUE-s9-eJf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="4x5-eI-jbL">
-                                        <rect key="frame" x="20" y="269.33333015441895" width="353" height="92.333335876464844"/>
+                                        <rect key="frame" x="20" y="319.33333015441895" width="353" height="92.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4x5-eI-jbL" id="6x2-ey-2Fs">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="92.333335876464844"/>
@@ -518,7 +552,7 @@ Go on! Add one...</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="U4W-kP-FQq">
-                                        <rect key="frame" x="20" y="361.66666603088379" width="353" height="93.333335876464844"/>
+                                        <rect key="frame" x="20" y="411.66666603088379" width="353" height="93.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U4W-kP-FQq" id="7ZY-R5-jGB">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="93.333335876464844"/>
@@ -562,7 +596,7 @@ Go on! Add one...</string>
                             <tableViewSection headerTitle="Geocoding" footerTitle="Forward (from address) and reverse (from coordinates) geocoding setup." id="7iQ-Tp-6yI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="JG8-2N-Rce">
-                                        <rect key="frame" x="20" y="517.66666793823242" width="353" height="93.333335876464844"/>
+                                        <rect key="frame" x="20" y="567.66666793823242" width="353" height="93.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JG8-2N-Rce" id="6U4-Qi-Tgs">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="93.333335876464844"/>
@@ -610,7 +644,7 @@ Go on! Add one...</string>
                             <tableViewSection id="5CX-IJ-za8" userLabel="Info">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="YgX-z8-XqG">
-                                        <rect key="frame" x="20" y="674.66666984558105" width="353" height="68.333335876464844"/>
+                                        <rect key="frame" x="20" y="724.66666984558105" width="353" height="68.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YgX-z8-XqG" id="UCT-xc-KPs">
                                             <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="68.333335876464844"/>
@@ -641,7 +675,8 @@ Go on! Add one...</string>
                         </sections>
                     </tableView>
                     <connections>
-                        <outlet property="continiousLocationUpdateSwitch" destination="HWs-Eb-KRI" id="ngu-tT-GaZ"/>
+                        <outlet property="centerSwitch" destination="HWs-Eb-KRI" id="uTg-kY-ONF"/>
+                        <outlet property="headingSwitch" destination="RUL-0P-RiM" id="b10-Wl-Rn9"/>
                         <outlet property="mapTypeSegment" destination="y7e-u7-jvo" id="Sbe-xr-9kS"/>
                         <outlet property="mapZoomSlider" destination="mTj-qU-3NG" id="oDp-kW-cQX"/>
                     </connections>
@@ -721,6 +756,9 @@ Should the need to create another showcase app arise (ex. Nominatim publishes a 
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

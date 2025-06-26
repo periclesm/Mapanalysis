@@ -25,7 +25,9 @@ class LocationManager: NSObject, ObservableObject {
 		manager.delegate = self
 		manager.distanceFilter = kCLDistanceFilterNone
 		configureAccuracy(.high)
-		enableBackgroundUpdates(false)
+		
+		//Deprecated in the latest app version
+		//enableBackgroundUpdates(false)
 	}
 	
 	//MARK: - Permissions
@@ -33,16 +35,19 @@ class LocationManager: NSObject, ObservableObject {
 	func requestLocationPermission() {
 		switch manager.authorizationStatus {
 			case .notDetermined:
+				debugPrint("[Request] Location Permission Not Determined")
 				manager.requestWhenInUseAuthorization()
 				
 			case .restricted, .denied:
+				debugPrint("[Request] Location Permission Restricted")
 				showLocationPermissionAlert()
 				
 			case .authorizedWhenInUse, .authorizedAlways:
+				debugPrint("[Request] Location Permission Allowed")
 				getCurrentLocation()
 				
 			@unknown default:
-				break
+				debugPrint("[Request] Location Permission Unknown")
 		}
 	}
 	
@@ -50,13 +55,15 @@ class LocationManager: NSObject, ObservableObject {
 	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
 		switch manager.authorizationStatus {
 			case .authorizedWhenInUse, .authorizedAlways:
+				debugPrint("[Request Change] Location Permission Allowed")
 				getCurrentLocation()
 				
 			case .denied, .restricted:
+				debugPrint("[Request Change] Location Permission Restricted")
 				showLocationPermissionAlert()
 				
 			default:
-				break
+				debugPrint("[Request Change] Location Permission Unknown")
 		}
 	}
 	
@@ -101,6 +108,7 @@ class LocationManager: NSObject, ObservableObject {
 		}
     }
     
+	@available(*, deprecated, message: "No need for continious updates in the last app version logic.")
     func enableBackgroundUpdates(_ enabled: Bool) {
         manager.allowsBackgroundLocationUpdates = enabled
 		manager.pausesLocationUpdatesAutomatically = !enabled
@@ -113,11 +121,13 @@ class LocationManager: NSObject, ObservableObject {
 		manager.requestLocation()
 	}
 	
+	@available(*, deprecated, message: "No need for continious updates in the last app version logic.")
 	func startLocationUpdates() {
 		isUpdating = true
 		manager.startUpdatingLocation()
 	}
 	
+	@available(*, deprecated, message: "No need for continious updates in the last app version logic.")
 	func stopLocationUpdates() {
 		isUpdating = false
 		manager.stopUpdatingLocation()
@@ -127,7 +137,7 @@ class LocationManager: NSObject, ObservableObject {
 extension LocationManager: CLLocationManagerDelegate {
 	
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-		debugPrint("[Location] Failed Location: \(error.localizedDescription)")
+		debugPrint(String.debugInfo() + "Failed getting location: \(error.localizedDescription)")
 	}
 	
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -139,10 +149,10 @@ extension LocationManager: CLLocationManagerDelegate {
 	}
 	
 	func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
-		debugPrint("[Location] Paused Location Updates")
+		debugPrint(String.debugInfo() + "Paused Location Updates")
 	}
 	
 	func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
-		debugPrint("[Location] Resumed Location Updates")
+		debugPrint(String.debugInfo() + "Resumed Location Updates")
 	}
 }

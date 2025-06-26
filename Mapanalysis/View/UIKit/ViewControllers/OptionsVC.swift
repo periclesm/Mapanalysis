@@ -9,11 +9,13 @@ import UIKit
 
 class OptionsVC: UITableViewController {
 	
-	@IBOutlet weak var continiousLocationUpdateSwitch: UISwitch!
+	@IBOutlet weak var centerSwitch: UISwitch!
+	@IBOutlet weak var headingSwitch: UISwitch!
 	@IBOutlet weak var mapZoomSlider: UISlider!
 	@IBOutlet weak var mapTypeSegment: UISegmentedControl!
 	
-	var setContinuousUpdates: ((Bool) -> Void)?
+	var centerMap: ((Bool) -> Void)?
+	var headingOnMap: ((Bool) -> Void)?
 	var setMapType: (() -> Void)?
 	var setMapZoomLevel: (() -> Void)?
 	
@@ -37,16 +39,24 @@ class OptionsVC: UITableViewController {
 		sheetPresentationController?.largestUndimmedDetentIdentifier = .none
 		sheetPresentationController?.detents = [ .medium(), .large() ]
 		
-		continiousLocationUpdateSwitch.isOn = AppPreferences.shared.continuousUpdates
+		centerSwitch.isOn = AppPreferences.shared.centerMap
+		headingSwitch.isOn = AppPreferences.shared.headingOnMap
+		headingSwitch.isEnabled = centerSwitch.isOn
 		mapZoomSlider.value = Float(AppPreferences.shared.mapZoom)
 		mapTypeSegment.selectedSegmentIndex = AppPreferences.shared.mapType.rawValue
 	}
 	
 	//MARK: - IBActions
 	
-	@IBAction func continuousUpdatesAction(_ sender: UISwitch) {
-		AppPreferences.shared.continuousUpdates = sender.isOn
-		setContinuousUpdates?(sender.isOn)
+	@IBAction func centerMapAction(_ sender: UISwitch) {
+		AppPreferences.shared.centerMap = sender.isOn
+		headingSwitch.isEnabled = sender.isOn
+		centerMap?(sender.isOn)
+	}
+	
+	@IBAction func headingOnMapAction(_ sender: UISwitch) {
+		AppPreferences.shared.headingOnMap = sender.isOn
+		headingOnMap?(sender.isOn)
 	}
 	
 	@IBAction func mapZoomLevelAction(_ sender: UISlider) {

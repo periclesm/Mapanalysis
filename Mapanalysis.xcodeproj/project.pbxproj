@@ -26,7 +26,6 @@
 				"Info-SUI.plist",
 				Info.plist,
 				SceneDelegate.swift,
-				View/UIKit/Components/MALocationButton.swift,
 				View/UIKit/ViewControllers/AnnotationVC.swift,
 				View/UIKit/ViewControllers/FavoritesVC.swift,
 				View/UIKit/ViewControllers/MapVC.swift,
@@ -236,7 +235,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = AFNBPBD3C5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mapanalysis/Info-SUI.plist";
@@ -273,7 +272,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = AFNBPBD3C5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mapanalysis/Info-SUI.plist";

@@ -10,7 +10,7 @@ import MapKit
 
 class MapVC: UIViewController {
 	
-	@IBOutlet weak var locationButton: MALocationButton!
+	@IBOutlet weak var locationButton: UIButton!
 	@IBOutlet weak var mapView: MKMapView!
 	@IBOutlet weak var mapTap: UIGestureRecognizer!
 	
@@ -18,7 +18,20 @@ class MapVC: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		locationManager.onLocationUpdate = { [weak self] location in
+			self?.showLocation(on: location, userInitiated: false)
+		}
+		
 		setupUI()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		//Ask for permissions and show location
+		locationManager.requestLocationPermission()
+		//Granting permission automatically requests for location in Location Manager
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,7 +52,7 @@ class MapVC: UIViewController {
 	
 	private func bindOptions(_ dvc: OptionsVC) {
 		dvc.setMapType = {
-			self.setmapType(type: AppPreferences.shared.mapType)
+			self.setMapType(type: AppPreferences.shared.mapType)
 		}
 		
 		dvc.setMapZoomLevel = {
@@ -47,30 +60,61 @@ class MapVC: UIViewController {
 			self.zoomCurrentLocation()
 		}
 		
-		dvc.setContinuousUpdates = { enabled in
-			self.showUserLocation()
+		dvc.centerMap = { enabled in
+			if enabled {
+				if AppPreferences.shared.headingOnMap {
+					self.mapView.userTrackingMode = .followWithHeading
+					self.locationButtonAppearance(trackingEnabled: true)
+				} else {
+					self.mapView.userTrackingMode = .follow
+					self.locationButtonAppearance(trackingEnabled: true)
+				}
+			} else {
+				self.mapView.userTrackingMode = .none
+				self.locationButtonAppearance(trackingEnabled: false)
+			}
+			
+			self.locationManager.getCurrentLocation()
+		}
+		
+		dvc.headingOnMap = { enabled in
+			if AppPreferences.shared.centerMap {
+				self.mapView.userTrackingMode = .followWithHeading
+			} else {
+				self.mapView.userTrackingMode = .none
+			}
+			
+			self.locationManager.getCurrentLocation()
 		}
 	}
 	
 	private func bindFavorites(_ dvc: FavoritesVC) {
 		dvc.presentAnnotation = { [weak self] annotation in
 			let location = CLLocation(latitude: annotation.latitude, longitude: annotation.longitude)
-			self?.showTappedLocation(on: location, userInitiated: true)
+			self?.showLocation(on: location, userInitiated: true)
 		}
 	}
 	
 	//MARK: - Map Display
 	
 	private func setupUI() {
-		locationButton.setState(state: .standard)
-		
-		//Set options and map type, ask for Permissions and update location
+		//Set options and map type
 		mapOptions()
-		setmapType(type: AppPreferences.shared.mapType)
+		setMapType(type: AppPreferences.shared.mapType)
 		
-		locationManager.onLocationUpdate = { [weak self] location in
-			self?.showTappedLocation(on: location, userInitiated: false)
+		locationButtonAppearance(trackingEnabled: AppPreferences.shared.centerMap)
+	}
+	
+	private func locationButtonAppearance(trackingEnabled: Bool) {
+		var config = locationButton.configuration
+		
+		if trackingEnabled {
+			config?.background.strokeColor = .systemOrange
+		} else {
+			config?.background.strokeColor = .systemMint
 		}
+		
+		locationButton.configuration = config
 	}
 	
 	//MARK: - Map configuration and functions
@@ -78,6 +122,7 @@ class MapVC: UIViewController {
 	func mapOptions() {
 		mapView.showsLargeContentViewer = true
 		mapView.showsUserLocation = true
+		mapView.userTrackingMode = .follow
 		mapView.showsScale = true
 		mapView.showsCompass = true
 		mapView.showsBuildings = true
@@ -91,7 +136,7 @@ class MapVC: UIViewController {
 		}()
 	}
 	
-	func setmapType(type: MapType) {
+	func setMapType(type: MapType) {
 		switch type {
 			case .standard:
 				mapView.mapType = .standard
@@ -102,7 +147,10 @@ class MapVC: UIViewController {
 		}
 	}
 	
-	func showTappedLocation(on location: CLLocation, userInitiated: Bool) {
+	func showLocation(on location: CLLocation, userInitiated: Bool) {
+		debugPrint(String.debugInfo() + "Show location")
+		debugPrint("lat: \(location.coordinate.latitude), lon: \(location.coordinate.longitude)")
+		debugPrint("mapzoom: \(AppPreferences.shared.mapZoom)")
 		mapView.removeAnnotations(mapView.annotations)
 		
 		let region = MKCoordinateRegion(
@@ -135,7 +183,7 @@ class MapVC: UIViewController {
 	
 	func zoomCurrentLocation() {
 		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-		showTappedLocation(on: location, userInitiated: false)
+		showLocation(on: location, userInitiated: false)
 		
 	}
 	
@@ -161,21 +209,45 @@ class MapVC: UIViewController {
 	
 	//MARK: - IBActions
 	
-	@IBAction func showUserLocation() {
-		if AppPreferences.shared.continuousUpdates {
-			if locationManager.isUpdating {
-				locationManager.stopLocationUpdates()
-				locationButton.setState(state: .continuousOFF)
-			}
-			else {
-				locationManager.startLocationUpdates()
-				locationButton.setState(state: .continuousON)
-			}
-		}
-		else {
-			locationManager.stopLocationUpdates()
-			locationManager.getCurrentLocation()
-			locationButton.setState(state: .standard)
+	@IBAction func centerToUserLocation() {
+		/*
+		 Important Note Here:
+		 When the user pans, zooms or simply moves away from the current location, tracking stops.
+		 When tracking is enabled again, it's a MKMap functionality not a CoreLocation functionality and the
+		 Location Manager does not trigger.
+		 Even when I manually trigger the location update, some zoom gimmicks are happenning because MKMap and
+		 Location manager have different opinions on who's the boss for this.
+		 I have not added a fix for this issue. Perhaps in a future code revisit...
+		 */
+		
+		//if the user pans or zooms the map and center is on, it will be set to off.
+		//Requesting location update each time the button is pressed to give an update when center is lost.
+		debugPrint(String.debugInfo() + "Center map")
+		
+		followUserLocation()
+		locationManager.getCurrentLocation()
+	}
+	
+	private func followUserLocation() {
+		switch mapView.userTrackingMode {
+			case .none:
+				debugPrint("Location does not follow User -- Enabling again")
+				if AppPreferences.shared.centerMap {
+					if AppPreferences.shared.headingOnMap {
+						self.mapView.userTrackingMode = .followWithHeading
+					} else {
+						self.mapView.userTrackingMode = .follow
+					}
+				}
+				
+			case .follow:
+				debugPrint("Location follows User")
+				
+			case .followWithHeading:
+				debugPrint("Location follows User with Heading")
+				
+			@unknown default:
+				debugPrint("Unknown follow user mode")
 		}
 	}
 	
@@ -185,6 +257,6 @@ class MapVC: UIViewController {
 		
 		//Recenter Map
 		let tappedLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-		showTappedLocation(on: tappedLocation, userInitiated: true)
+		showLocation(on: tappedLocation, userInitiated: true)
 	}
 }
