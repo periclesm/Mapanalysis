@@ -9,7 +9,6 @@ import SwiftUI
 import MapKit
 
 struct MapRepresentable: UIViewRepresentable {
-	@Binding var coordinate: CLLocationCoordinate2D?
 	@Binding var annotation: Annotation?
 	@Binding var showAnnotation: Bool
 	var mapType: MapType
@@ -28,7 +27,6 @@ struct MapRepresentable: UIViewRepresentable {
 		
 		//Set options and map type, ask for Permissions and update location
 		mapOptions(mapView)
-		setMapType(in: mapView)
 		
 		locationManager.onLocationUpdate = { location in
 			showLocation(location, mapView: mapView)
@@ -40,11 +38,14 @@ struct MapRepresentable: UIViewRepresentable {
 	func updateUIView(_ uiView: MKMapView, context: Context) {
 		setMapType(in: uiView)
 		setMapZoom(in: uiView)
+		if let annotation {
+			showLocation(annotation.location, annotation: annotation, mapView: uiView)
+		}
 	}
 	
-	static func dismantleUIView(_ uiView: MKMapView, coordinator: Coordinator) {
-		//nothing so far
-	}
+	func dismantleUIView(_ uiView: MKMapView, coordinator: Coordinator) {
+	//nothing so far
+}
 	
 	func makeCoordinator() -> Coordinator {
 		Coordinator(self)
@@ -93,23 +94,20 @@ struct MapRepresentable: UIViewRepresentable {
 		)
 	}
 	
-	func showUserLocation() {
-		if AppPreferences.shared.continuousUpdates {
-			if locationManager.isUpdating {
-				locationManager.stopLocationUpdates()
-//				locationButton.setState(state: .continuousOFF)
-			}
-			else {
-				locationManager.startLocationUpdates()
-//				locationButton.setState(state: .continuousON)
-			}
-		}
-		else {
-			locationManager.stopLocationUpdates()
-			locationManager.getCurrentLocation()
-//			locationButton.setState(state: .standard)
-		}
-	}
+//	func showUserLocation() {
+//		if AppPreferences.shared.continuousUpdates {
+//			if locationManager.isUpdating {
+//				locationManager.stopLocationUpdates()
+//			}
+//			else {
+//				locationManager.startLocationUpdates()
+//			}
+//		}
+//		else {
+//			locationManager.stopLocationUpdates()
+//			locationManager.getCurrentLocation()
+//		}
+//	}
 	
 	func showLocation(_ location: CLLocation, annotation: Annotation? = nil, mapView: MKMapView) {
 		mapView.removeAnnotations(mapView.annotations)
@@ -161,7 +159,6 @@ struct MapRepresentable: UIViewRepresentable {
 			
 			let point = sender.location(in: mapView)
 			let coord = mapView.convert(point, toCoordinateFrom: mapView)
-			parent.onTap?(coord)
 			
 			let location = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
 			Task(priority: .userInitiated) {
@@ -170,13 +167,10 @@ struct MapRepresentable: UIViewRepresentable {
 				 Works by default with Apple Geocoder. If another Geocoder is present, the geocoder should conform to the GeocodingProvider protocol
 				 and annotator should be initialied as annotator = AnnotatorService(provider: ).
 				 */
-
 				if let annotation = await AnnotatorService().createAnnotation(location) {
-					DispatchQueue.main.async {
-						self.parent.showLocation(location, annotation: annotation, mapView: mapView)
-						self.parent.coordinate = coord
+//					DispatchQueue.main.async {
 						self.parent.annotation = annotation
-					}
+//					}
 				}
 			}
 		}

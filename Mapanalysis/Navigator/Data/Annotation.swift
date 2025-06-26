@@ -7,13 +7,18 @@
 
 import CoreLocation
 
-struct Annotation: Codable, Sendable {
+struct Annotation: Codable, Sendable, Identifiable {
 	
+	var id: String { "\(latitude),\(longitude)" }
 	let latitude: Double
 	let longitude: Double
     var title: String?
     var subtitle: String?
     var address: Address?
+	
+	var location : CLLocation {
+		CLLocation(latitude: latitude, longitude: longitude)
+	}
 	
 	var coordinate: CLLocationCoordinate2D {
 		CLLocationCoordinate2D(latitude: latitude, longitude: longitude)

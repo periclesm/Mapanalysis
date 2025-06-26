@@ -9,26 +9,23 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-	@State private var annotation: Annotation?
-	@State private var coordinate: CLLocationCoordinate2D? = nil
-	@State private var mapType: MapType = AppPreferences.shared.mapType
-	@State private var mapZoom = AppPreferences.shared.mapZoom
+	@State var annotation: Annotation?
+	@State var coordinate: CLLocationCoordinate2D? = nil
+	@State var mapType = AppPreferences.shared.mapType
+	@State var mapZoom = AppPreferences.shared.mapZoom
 	
-	@State private var showOptions = false
-	@State private var showFavorites = false
-	@State private var showAnnotation = false
+	@State var showOptions = false
+	@State var showFavorites = false
+	@State var showAnnotation = false
 	
     var body: some View {
 		ZStack {
-			MapRepresentable(coordinate: $coordinate,
-							 annotation: $annotation,
-							 showAnnotation: $showAnnotation,
+			MapRepresentable(annotation: $annotation, showAnnotation: $showAnnotation,
 							 mapType: mapType, mapZoom: mapZoom) { coordinate in
 				debugPrint("Coordinate is: \(coordinate.latitude) lat, \(coordinate.longitude) long")
-				showAnnotation = true
 			}
 			.edgesIgnoringSafeArea(.all)
-			.sheet(isPresented: $showAnnotation) {
+			.sheet(item: $annotation) { annotation in
 					AnnotationView(annotation: annotation)
 						.presentationDetents([.medium])
 						.presentationDragIndicator(.visible)
