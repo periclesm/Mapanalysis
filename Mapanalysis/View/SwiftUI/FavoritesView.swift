@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct FavoritesView: View {
-	@State private var favorites: [Annotation] = AppPreferences.shared.favorites
+	@State var favorites: [Annotation] = AppPreferences.shared.favorites
+	@Binding var annotation: Annotation?
+	var onSelect: ((Annotation) -> Void)? = nil //this closure is executed in MapView
 	
 	var body: some View {
 		ZStack {
@@ -24,7 +26,14 @@ struct FavoritesView: View {
 				if favorites.isNotEmpty {
 					List {
 						ForEach(favorites, id: \.title) { annotation in
-							AnnotationRow(annotation: annotation)
+							FavoriteItem(annotation: annotation) {
+								/*
+								 When selecting an item in the list, the View's onSelect is executed
+								 and passes the selected annotation.
+								 Callback = return the annotation back to mapview.
+								 */
+								onSelect?(annotation)
+							}
 						}
 					}
 				} else {
@@ -48,12 +57,18 @@ struct FavoritesView: View {
 	}
 }
 
-struct AnnotationRow: View {
+struct FavoriteItem: View {
 	let annotation: Annotation
+	
+	/*
+	 No need to define annotation since the closure knows what to contain.
+	 This onSelect is used in the button below.
+	 */
+	let onSelect: (() -> Void)?
 	
 	var body: some View {
 		Button(action: {
-			debugPrint("PewPew")
+			onSelect?() //Button action returns the annotation
 		}) {
 			HStack {
 				VStack(alignment: .leading) {
@@ -91,5 +106,5 @@ struct AnnotationRow: View {
 }
 
 #Preview {
-    FavoritesView()
+	FavoritesView(annotation: .constant(nil))
 }

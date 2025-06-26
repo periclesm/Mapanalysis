@@ -49,7 +49,15 @@ struct MapView: View {
 					.clipShape(Circle())
 					.shadow(radius: 4)
 					.sheet(isPresented: $showFavorites) {
-						FavoritesView()
+						/*
+						 All is needed is to assign the annotation that returns when a favorite is selected.
+						 Then the modal will close and updates will take their course when annotation changes.
+						 At the end, close the FavoritesView to bring up the AnnotationView after the map update.
+						 */
+						FavoritesView(annotation: $annotation) { selectedAnnotation in
+							annotation = selectedAnnotation
+							showFavorites = false
+						}
 							.presentationDetents([.medium, .large])
 							.presentationDragIndicator(.visible)
 					}
