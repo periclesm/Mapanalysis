@@ -11,6 +11,8 @@ import MapKit
 struct MapView: View {
 	@State var annotation: Annotation?
 	@State var coordinate: CLLocationCoordinate2D? = nil
+	@State var centerMap = AppPreferences.shared.centerMap
+	@State var headingOnMap = AppPreferences.shared.headingOnMap
 	@State var mapType = AppPreferences.shared.mapType
 	@State var mapZoom = AppPreferences.shared.mapZoom
 	
@@ -18,10 +20,22 @@ struct MapView: View {
 	@State var showFavorites = false
 	@State var showAnnotation = false
 	
+	@StateObject var locationManager = LocationManager()
+	
+	init() {
+		let permissionManager = LocationManager()
+		permissionManager.requestLocationPermission()
+	}
+	
     var body: some View {
 		ZStack {
-			MapRepresentable(annotation: $annotation, showAnnotation: $showAnnotation,
-							 mapType: mapType, mapZoom: mapZoom) { coordinate in
+			MapRepresentable(annotation: $annotation,
+							 showAnnotation: $showAnnotation,
+							 centerMap: centerMap,
+							 headingOnMap: headingOnMap,
+							 mapType: mapType,
+							 mapZoom: mapZoom,
+							 locationManager: locationManager) { coordinate in
 				debugPrint("Coordinate is: \(coordinate.latitude) lat, \(coordinate.longitude) long")
 			}
 			.edgesIgnoringSafeArea(.all)
@@ -63,7 +77,8 @@ struct MapView: View {
 					}
 					
 					Button(action: {
-						debugPrint("location")
+						locationManager.getCurrentLocation()
+						
 					}) {
 						Image(systemName: "location")
 							.resizable()
@@ -95,7 +110,10 @@ struct MapView: View {
 					.clipShape(Circle())
 					.shadow(radius: 4)
 					.sheet(isPresented: $showOptions) {
-						OptionsView(mapType: $mapType, mapZoom: $mapZoom)
+						OptionsView(centerMap: $centerMap,
+									headingOnMap: $headingOnMap,
+									mapType: $mapType,
+									mapZoom: $mapZoom)
 							.presentationDetents([.medium, .large])
 							.presentationDragIndicator(.visible)
 					}

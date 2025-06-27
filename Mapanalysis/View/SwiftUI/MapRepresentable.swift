@@ -11,10 +11,12 @@ import MapKit
 struct MapRepresentable: UIViewRepresentable {
 	@Binding var annotation: Annotation?
 	@Binding var showAnnotation: Bool
+	var centerMap: Bool
+	var headingOnMap: Bool
 	var mapType: MapType
 	var mapZoom: Double
+	let locationManager: LocationManager
 	
-	let locationManager = LocationManager()
 	var onTap: ((CLLocationCoordinate2D) -> Void)? = nil
 	
 	func makeUIView(context: Context) -> MKMapView {
@@ -29,7 +31,11 @@ struct MapRepresentable: UIViewRepresentable {
 		mapOptions(mapView)
 		
 		locationManager.onLocationUpdate = { location in
-			showLocation(location, mapView: mapView)
+			DispatchQueue.main.async {
+//				if centerMap {
+					showLocation(location, mapView: mapView)
+//				}
+			}
 		}
 
 		return mapView
@@ -38,6 +44,17 @@ struct MapRepresentable: UIViewRepresentable {
 	func updateUIView(_ uiView: MKMapView, context: Context) {
 		setMapType(in: uiView)
 		setMapZoom(in: uiView)
+		if centerMap {
+			centerMap(in: uiView)
+			
+			if headingOnMap {
+				headingOnMap(in: uiView)
+			}
+			
+			followUserLocation(in: uiView)
+			self.locationManager.getCurrentLocation()
+		}
+		
 		if let annotation {
 			showLocation(annotation.location, annotation: annotation, mapView: uiView)
 		}
@@ -56,7 +73,6 @@ struct MapRepresentable: UIViewRepresentable {
 	func mapOptions(_ mapView: MKMapView) {
 		mapView.showsLargeContentViewer = true
 		mapView.showsUserLocation = true
-		mapView.userTrackingMode = .follow
 		mapView.showsScale = true
 		mapView.showsCompass = true
 		mapView.showsBuildings = true
@@ -68,6 +84,57 @@ struct MapRepresentable: UIViewRepresentable {
 					false
 			}
 		}()
+		
+		if centerMap {
+			mapView.userTrackingMode = .follow
+			
+			if headingOnMap {
+				mapView.userTrackingMode = .followWithHeading
+			}
+		}
+	}
+	
+	private func followUserLocation(in mapView: MKMapView) {
+		switch mapView.userTrackingMode {
+			case .none:
+				debugPrint("Location does not follow User -- Enabling again")
+				if centerMap {
+					if headingOnMap {
+						mapView.userTrackingMode = .followWithHeading
+					} else {
+						mapView.userTrackingMode = .follow
+					}
+				}
+				
+			case .follow:
+				debugPrint("Location follows User")
+				
+			case .followWithHeading:
+				debugPrint("Location follows User with Heading")
+				
+			@unknown default:
+				debugPrint("Unknown follow user mode")
+		}
+	}
+	
+	func centerMap(in mapView: MKMapView) {
+		if centerMap {
+			if headingOnMap {
+				mapView.userTrackingMode = .followWithHeading
+			} else {
+				mapView.userTrackingMode = .follow
+			}
+		} else {
+			mapView.userTrackingMode = .none
+		}
+	}
+	
+	func headingOnMap(in mapView: MKMapView) {
+		if centerMap {
+			mapView.userTrackingMode = .followWithHeading
+		} else {
+			mapView.userTrackingMode = .none
+		}
 	}
 	
 	func setMapType(in mapView: MKMapView) {

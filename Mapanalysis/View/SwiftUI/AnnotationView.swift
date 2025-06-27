@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AnnotationView: View {
 	var annotation: Annotation?
-	@State private var isFavorite = false
 	@State private var favoriteButtonTitle = "Add Favorite"
 	
     var body: some View {
@@ -17,7 +16,6 @@ struct AnnotationView: View {
 			HStack {
 				Spacer()
 				Button(action: {
-					isFavorite.toggle()
 					favoriteAction()
 				}) {
 					Text(favoriteButtonTitle)
@@ -27,6 +25,10 @@ struct AnnotationView: View {
 						.padding(.vertical, 8)
 						.background(Color.purple)
 						.clipShape(Capsule())
+				}
+				.onAppear {
+					guard annotation != nil else { return }
+					setButtonTitle()
 				}
 			}
 			

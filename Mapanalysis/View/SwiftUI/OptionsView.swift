@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct OptionsView: View {
-	@State var continiousUpdates = AppPreferences.shared.continuousUpdates
+	@Binding var centerMap: Bool
+	@Binding var headingOnMap: Bool
 	@Binding var mapType: MapType
 	@Binding var mapZoom: Double
 	@State var geocoder: GeocoderService = AppPreferences.shared.geocoder
@@ -29,12 +30,20 @@ struct OptionsView: View {
 				List {
 					Section(header: Text("Location Update"),
 							footer: Text("When off, the device will ask only once for the current location.")) {
-						Toggle("Continious Location Updates", isOn: $continiousUpdates)
+						Toggle("Center map on user location", isOn: $centerMap)
 							.font(.system(size: 15))
 							.tint(Color.purple)
-							.onChange(of: continiousUpdates) { oldValue, newValue in
-								AppPreferences.shared.continuousUpdates = newValue
+							.onChange(of: centerMap) { oldValue, newValue in
+								AppPreferences.shared.centerMap = newValue
 							}
+						
+						Toggle("Show heading when following user", isOn: $headingOnMap)
+							.font(.system(size: 15))
+							.tint(Color.purple)
+							.onChange(of: headingOnMap) { oldValue, newValue in
+								AppPreferences.shared.headingOnMap = newValue
+							}
+							.disabled(!centerMap)
 					}
 					
 					Section(header: Text("Map Display")) {
@@ -107,5 +116,5 @@ struct OptionsView: View {
 }
 
 #Preview {
-	OptionsView(mapType: .constant(.standard), mapZoom: .constant(800))
+	OptionsView(centerMap: .constant(true), headingOnMap: .constant(false), mapType: .constant(.standard), mapZoom: .constant(800))
 }

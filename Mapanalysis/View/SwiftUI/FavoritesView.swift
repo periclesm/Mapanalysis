@@ -35,6 +35,7 @@ struct FavoritesView: View {
 								onSelect?(annotation)
 							}
 						}
+						.onDelete(perform: delete)
 					}
 				} else {
 					Spacer()
@@ -54,6 +55,11 @@ struct FavoritesView: View {
 			}
 		}
 		.background(.purple)
+	}
+	
+	private func delete(at offsets: IndexSet) {
+		favorites.remove(atOffsets: offsets)
+		AppPreferences.shared.favorites = favorites
 	}
 }
 

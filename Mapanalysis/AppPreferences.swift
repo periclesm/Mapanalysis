@@ -26,7 +26,7 @@ class AppPreferences: NSObject {
 		}
 		
 		get {
-			return defaults.object(forKey: "CenterMap") as? Bool ?? true
+			return defaults.object(forKey: "CenterMap") as? Bool ?? false
 		}
 	}
 	

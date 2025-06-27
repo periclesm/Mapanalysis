@@ -109,9 +109,9 @@ class MapVC: UIViewController {
 		var config = locationButton.configuration
 		
 		if trackingEnabled {
-			config?.background.strokeColor = .systemOrange
-		} else {
 			config?.background.strokeColor = .systemMint
+		} else {
+			config?.background.strokeColor = .systemOrange
 		}
 		
 		locationButton.configuration = config
@@ -122,7 +122,6 @@ class MapVC: UIViewController {
 	func mapOptions() {
 		mapView.showsLargeContentViewer = true
 		mapView.showsUserLocation = true
-		mapView.userTrackingMode = .follow
 		mapView.showsScale = true
 		mapView.showsCompass = true
 		mapView.showsBuildings = true
@@ -134,6 +133,14 @@ class MapVC: UIViewController {
 					false
 			}
 		}()
+		
+		if AppPreferences.shared.centerMap {
+			mapView.userTrackingMode = .follow
+			
+			if AppPreferences.shared.headingOnMap {
+				mapView.userTrackingMode = .followWithHeading
+			}
+		}
 	}
 	
 	func setMapType(type: MapType) {

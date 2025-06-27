@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wR7-An-v0h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24093.8" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wR7-An-v0h">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24053.1"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -132,7 +132,7 @@
             <objects>
                 <viewController storyboardIdentifier="AnnotationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LTQ-VC-Tca" customClass="AnnotationVC" customModule="Mapanalysis_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y4h-ci-dal">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hWU-SM-Smd" userLabel="Address Stack">
@@ -269,7 +269,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FavoritesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q6k-Q2-Zm4" customClass="FavoritesVC" customModule="Mapanalysis_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="54" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="rvz-WD-rRP">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <inset key="separatorInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -294,23 +294,23 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="favoriteCell" id="0KY-ob-jWz" customClass="FavoriteCell" customModule="Mapanalysis_UIKit" customModuleProvider="target">
-                                <rect key="frame" x="20" y="135.33333206176758" width="353" height="82"/>
+                                <rect key="frame" x="20" y="135.33333206176758" width="353" height="82.666664123535156"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0KY-ob-jWz" id="sxg-eg-6kU">
-                                    <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="82"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="82.666664123535156"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vj7-6i-9Z9">
-                                            <rect key="frame" x="16" y="10" width="296.66666666666669" height="62"/>
+                                            <rect key="frame" x="16" y="9.9999999999999964" width="296.66666666666669" height="62.666666666666657"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Annotation Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTA-ht-AYt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="20.333333333333332"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="20.666666666666668"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="CAN-rZ-tnl" userLabel="Latitude Stack">
-                                                    <rect key="frame" x="0.0" y="25.333333333333336" width="101" height="16"/>
+                                                    <rect key="frame" x="0.0" y="25.666666666666664" width="101" height="16"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="latitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hN4-8U-Onl">
                                                             <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="16"/>
@@ -327,16 +327,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="1WR-Gy-ND8" userLabel="Longtitude Stack">
-                                                    <rect key="frame" x="0.0" y="46.333333333333336" width="117" height="15.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="46.666666666666664" width="117" height="16"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="longtitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhT-Ur-3l2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="64.666666666666671" height="15.666666666666666"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="64.666666666666671" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUR-8y-pKf">
-                                                            <rect key="frame" x="73.666666666666671" y="0.0" width="43.333333333333329" height="15.666666666666666"/>
+                                                            <rect key="frame" x="73.666666666666671" y="0.0" width="43.333333333333329" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -409,7 +409,7 @@ Go on! Add one...</string>
             <objects>
                 <tableViewController storyboardIdentifier="OptionsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjh-Ir-1dy" customClass="OptionsVC" customModule="Mapanalysis_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="jwb-jH-6Xu">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="pxJ-LG-Z3c"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -449,7 +449,7 @@ Go on! Add one...</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWs-Eb-KRI">
-                                                    <rect key="frame" x="288" y="9.6666666666666643" width="51" height="31"/>
+                                                    <rect key="frame" x="271" y="10" width="68" height="30"/>
                                                     <color key="onTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
                                                         <action selector="centerMapAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="7EO-Op-vw7"/>
@@ -480,7 +480,7 @@ Go on! Add one...</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RUL-0P-RiM">
-                                                    <rect key="frame" x="288" y="9.6666666666666643" width="51" height="31"/>
+                                                    <rect key="frame" x="271" y="10" width="68" height="30"/>
                                                     <color key="onTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
                                                         <action selector="headingOnMapAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="DEC-jc-K6V"/>
@@ -502,10 +502,10 @@ Go on! Add one...</string>
                             <tableViewSection headerTitle="Map Display" id="IUE-s9-eJf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="4x5-eI-jbL">
-                                        <rect key="frame" x="20" y="319.33333015441895" width="353" height="92.333335876464844"/>
+                                        <rect key="frame" x="20" y="319.33333015441895" width="353" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4x5-eI-jbL" id="6x2-ey-2Fs">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="92.333335876464844"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Map zoom distance (in meters)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eI-Se-ONn">
@@ -515,20 +515,20 @@ Go on! Add one...</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="500" minValue="100" maxValue="1000" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTj-qU-3NG">
-                                                    <rect key="frame" x="42.666666666666657" y="46" width="260.33333333333337" height="31.333333333333329"/>
+                                                    <rect key="frame" x="44.666666666666657" y="46" width="256.33333333333337" height="35"/>
                                                     <color key="minimumTrackTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
                                                         <action selector="mapZoomLevelAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="wnJ-sJ-ePk"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QqG-cZ-HLg">
-                                                    <rect key="frame" x="16" y="54" width="20.666666666666671" height="14.333333333333329"/>
+                                                    <rect key="frame" x="16" y="56.333333333333336" width="20.666666666666671" height="14.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r79-Cd-rmW">
-                                                    <rect key="frame" x="309" y="54" width="28" height="14.333333333333329"/>
+                                                    <rect key="frame" x="309" y="56.333333333333336" width="28" height="14.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
@@ -552,10 +552,10 @@ Go on! Add one...</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="U4W-kP-FQq">
-                                        <rect key="frame" x="20" y="411.66666603088379" width="353" height="93.333335876464844"/>
+                                        <rect key="frame" x="20" y="416.33333015441895" width="353" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U4W-kP-FQq" id="7ZY-R5-jGB">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="93.333335876464844"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Map type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7X-fc-EKt">
@@ -565,7 +565,8 @@ Go on! Add one...</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y7e-u7-jvo">
-                                                    <rect key="frame" x="46.666666666666657" y="46" width="260" height="32.333333333333329"/>
+                                                    <rect key="frame" x="46.666666666666657" y="46" width="260" height="33"/>
+                                                    <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="t6G-vc-09x"/>
                                                     </constraints>
@@ -574,7 +575,7 @@ Go on! Add one...</string>
                                                         <segment title="Satellite"/>
                                                         <segment title="Hybrid"/>
                                                     </segments>
-                                                    <color key="selectedSegmentTintColor" systemColor="systemPurpleColor"/>
+                                                    <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <connections>
                                                         <action selector="mapTypeAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="UGQ-nZ-v4p"/>
                                                     </connections>
@@ -596,23 +597,24 @@ Go on! Add one...</string>
                             <tableViewSection headerTitle="Geocoding" footerTitle="Forward (from address) and reverse (from coordinates) geocoding setup." id="7iQ-Tp-6yI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="JG8-2N-Rce">
-                                        <rect key="frame" x="20" y="567.66666793823242" width="353" height="93.333335876464844"/>
+                                        <rect key="frame" x="20" y="572.99999618530273" width="353" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JG8-2N-Rce" id="6U4-Qi-Tgs">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="93.333335876464844"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="1tR-s4-l9W">
-                                                    <rect key="frame" x="16" y="16.000000000000004" width="321" height="61.333333333333343"/>
+                                                    <rect key="frame" x="16" y="16" width="321" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Geocoding provider" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Na-o7-TfG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="321" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="321" height="18.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UPh-DC-kGa">
-                                                            <rect key="frame" x="30.666666666666657" y="30" width="260" height="32.333333333333329"/>
+                                                            <rect key="frame" x="30.666666666666657" y="30.333333333333336" width="260" height="32.666666666666671"/>
+                                                            <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="oMY-xb-0Hj"/>
                                                             </constraints>
@@ -621,7 +623,7 @@ Go on! Add one...</string>
                                                                 <segment title="Google" enabled="NO"/>
                                                                 <segment title="Bing" enabled="NO"/>
                                                             </segments>
-                                                            <color key="selectedSegmentTintColor" systemColor="systemPurpleColor"/>
+                                                            <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
                                                         </segmentedControl>
                                                     </subviews>
                                                     <constraints>
@@ -644,14 +646,14 @@ Go on! Add one...</string>
                             <tableViewSection id="5CX-IJ-za8" userLabel="Info">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="YgX-z8-XqG">
-                                        <rect key="frame" x="20" y="724.66666984558105" width="353" height="68.333335876464844"/>
+                                        <rect key="frame" x="20" y="730.66666221618652" width="353" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YgX-z8-XqG" id="UCT-xc-KPs">
-                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="68.333335876464844"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Why Google and Bing geocoding are disabled?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzQ-oe-ob5">
-                                                    <rect key="frame" x="16" y="16.000000000000004" width="290.66666666666669" height="36.333333333333343"/>
+                                                    <rect key="frame" x="16" y="16" width="290.66666666666669" height="37"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -694,13 +696,13 @@ Go on! Add one...</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why Google and Bing geocoding are disabled?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xup-6F-x5I">
-                                <rect key="frame" x="16" y="20" width="361" height="48"/>
+                                <rect key="frame" x="20" y="30" width="353" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0r-R6-nLf">
-                                <rect key="frame" x="16" y="88" width="361" height="675"/>
+                                <rect key="frame" x="20" y="78" width="353" height="685"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">While previous versions of this use case app supported Google Maps and Bing Maps, the latest iteration simply removes these two methods for geolocation.
 
@@ -727,12 +729,12 @@ Should the need to create another showcase app arise (ex. Nominatim publishes a 
                         <viewLayoutGuide key="safeArea" id="yQG-hS-UhD"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xup-6F-x5I" firstAttribute="top" secondItem="iID-po-jsn" secondAttribute="top" constant="20" id="1YY-Mo-Yyd"/>
-                            <constraint firstItem="yQG-hS-UhD" firstAttribute="trailing" secondItem="xup-6F-x5I" secondAttribute="trailing" constant="16" id="1us-sz-BWM"/>
-                            <constraint firstItem="xup-6F-x5I" firstAttribute="leading" secondItem="yQG-hS-UhD" secondAttribute="leading" constant="16" id="OSe-Q8-cXF"/>
-                            <constraint firstItem="m0r-R6-nLf" firstAttribute="leading" secondItem="yQG-hS-UhD" secondAttribute="leading" constant="16" id="cQD-UM-jyU"/>
-                            <constraint firstItem="m0r-R6-nLf" firstAttribute="top" secondItem="xup-6F-x5I" secondAttribute="bottom" constant="20" id="j52-CM-OUb"/>
-                            <constraint firstItem="yQG-hS-UhD" firstAttribute="trailing" secondItem="m0r-R6-nLf" secondAttribute="trailing" constant="16" id="yjW-HP-rNr"/>
+                            <constraint firstItem="xup-6F-x5I" firstAttribute="top" secondItem="iID-po-jsn" secondAttribute="top" constant="30" id="1YY-Mo-Yyd"/>
+                            <constraint firstItem="yQG-hS-UhD" firstAttribute="trailing" secondItem="xup-6F-x5I" secondAttribute="trailing" constant="20" id="1us-sz-BWM"/>
+                            <constraint firstItem="xup-6F-x5I" firstAttribute="leading" secondItem="yQG-hS-UhD" secondAttribute="leading" constant="20" id="OSe-Q8-cXF"/>
+                            <constraint firstItem="m0r-R6-nLf" firstAttribute="leading" secondItem="yQG-hS-UhD" secondAttribute="leading" constant="20" id="cQD-UM-jyU"/>
+                            <constraint firstItem="m0r-R6-nLf" firstAttribute="top" secondItem="xup-6F-x5I" secondAttribute="bottom" id="j52-CM-OUb"/>
+                            <constraint firstItem="yQG-hS-UhD" firstAttribute="trailing" secondItem="m0r-R6-nLf" secondAttribute="trailing" constant="20" id="yjW-HP-rNr"/>
                             <constraint firstItem="yQG-hS-UhD" firstAttribute="bottom" secondItem="m0r-R6-nLf" secondAttribute="bottom" constant="20" id="zf2-1F-GRX"/>
                         </constraints>
                     </view>
@@ -753,6 +755,9 @@ Should the need to create another showcase app arise (ex. Nominatim publishes a 
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
