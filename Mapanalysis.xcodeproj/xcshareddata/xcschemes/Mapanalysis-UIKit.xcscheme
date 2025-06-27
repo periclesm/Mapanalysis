@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "68E2D9FA2DFB05D900F3E0CF"
-               BuildableName = "Mapanalysis.app"
-               BlueprintName = "Mapanalysis"
+               BuildableName = "Mapanalysis UIKit.app"
+               BlueprintName = "Mapanalysis UIKit"
                ReferencedContainer = "container:Mapanalysis.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68E2D9FA2DFB05D900F3E0CF"
-            BuildableName = "Mapanalysis.app"
-            BlueprintName = "Mapanalysis"
+            BuildableName = "Mapanalysis UIKit.app"
+            BlueprintName = "Mapanalysis UIKit"
             ReferencedContainer = "container:Mapanalysis.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -66,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68E2D9FA2DFB05D900F3E0CF"
-            BuildableName = "Mapanalysis.app"
-            BlueprintName = "Mapanalysis"
+            BuildableName = "Mapanalysis UIKit.app"
+            BlueprintName = "Mapanalysis UIKit"
             ReferencedContainer = "container:Mapanalysis.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

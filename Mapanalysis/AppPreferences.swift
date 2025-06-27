@@ -20,6 +20,26 @@ class AppPreferences: NSObject {
 	static var shared = AppPreferences()
 	var defaults = UserDefaults.standard
 	
+	var centerMap: Bool {
+		set {
+			defaults.set(newValue, forKey: "CenterMap")
+		}
+		
+		get {
+			return defaults.object(forKey: "CenterMap") as? Bool ?? false
+		}
+	}
+	
+	var headingOnMap: Bool {
+		set {
+			defaults.set(newValue, forKey: "HeadingOnMap")
+		}
+		
+		get {
+			return defaults.object(forKey: "HeadingOnMap") as? Bool ?? false
+		}
+	}
+	
 	var geocoder: GeocoderService {
 		set {
 			defaults.set(newValue.rawValue, forKey: "Geocoder")
@@ -27,16 +47,6 @@ class AppPreferences: NSObject {
 		
 		get {
 			return GeocoderService(rawValue: defaults.object(forKey: "Geocoder") as? Int ?? 0) ?? .apple
-		}
-	}
-	
-	var continuousUpdates: Bool {
-		set {
-			defaults.set(newValue, forKey: "ContinuousUpdates")
-		}
-		
-		get {
-			return defaults.object(forKey: "ContinuousUpdates") as? Bool ?? false
 		}
 	}
 	

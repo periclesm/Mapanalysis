@@ -1,8 +1,8 @@
-# Mapanalysis
+# MapAnalysis
 
 This is a MapKit usecase application with basic functionality and can be used as a starting point for building ideas and services based on maps and Core Location.
 
-It is written in Swift and UIKit and makes use of reverse geolocation (forward geolocation functionality is included but not used) from Apple Maps to display additional information.
+It is written in Swift and both UIKit and SwiftUI (select the respective target to build and run the app) and makes use of reverse geolocation (forward geolocation functionality is included but not used) from Apple Maps to display additional information.
 
 ##### **Important note:**
 
@@ -27,6 +27,6 @@ Should the need to create another showcase app arise (ex. Nominatim publishes a 
 
 ### To Do:
 
-- SwiftUI version (Coming soon)
+- ~~SwiftUI version (Coming soon)~~
 
 Testflight Link: [MapAnalysis](https://testflight.apple.com/join/SQhZ1OCf)

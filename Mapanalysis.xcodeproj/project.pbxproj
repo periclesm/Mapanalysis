@@ -3,25 +3,50 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		681AD0F42E0319300007DF87 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E2DA142DFB063E00F3E0CF /* MapKit.framework */; };
 		68E2DA152DFB063E00F3E0CF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E2DA142DFB063E00F3E0CF /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		68E2D9FB2DFB05D900F3E0CF /* Mapanalysis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapanalysis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		681AD0F92E0319300007DF87 /* Mapanalysis SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapanalysis SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68E2D9FB2DFB05D900F3E0CF /* Mapanalysis UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapanalysis UIKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68E2DA142DFB063E00F3E0CF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6856015A2DFB185B00CE82A1 /* Exceptions for "Mapanalysis" folder in "Mapanalysis" target */ = {
+		681AD0FA2E0319300007DF87 /* Exceptions for "Mapanalysis" folder in "Mapanalysis SwiftUI" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"/Localized: View/UIKit/Storyboards/Main.storyboard",
+				AppDelegate.swift,
+				"Info-SUI.plist",
 				Info.plist,
+				SceneDelegate.swift,
+				View/UIKit/ViewControllers/AnnotationVC.swift,
+				View/UIKit/ViewControllers/FavoritesVC.swift,
+				View/UIKit/ViewControllers/MapVC.swift,
+				View/UIKit/ViewControllers/OptionsVC.swift,
 			);
-			target = 68E2D9FA2DFB05D900F3E0CF /* Mapanalysis */;
+			target = 681AD0F12E0319300007DF87 /* Mapanalysis SwiftUI */;
+		};
+		6856015A2DFB185B00CE82A1 /* Exceptions for "Mapanalysis" folder in "Mapanalysis UIKit" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Info-SUI.plist",
+				Info.plist,
+				Mapanalysis.swift,
+				View/SwiftUI/AnnotationView.swift,
+				View/SwiftUI/DeclarationView.swift,
+				View/SwiftUI/FavoritesView.swift,
+				View/SwiftUI/MapRepresentable.swift,
+				View/SwiftUI/MapView.swift,
+				View/SwiftUI/OptionsView.swift,
+			);
+			target = 68E2D9FA2DFB05D900F3E0CF /* Mapanalysis UIKit */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -29,7 +54,8 @@
 		68E2D9FD2DFB05D900F3E0CF /* Mapanalysis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				6856015A2DFB185B00CE82A1 /* Exceptions for "Mapanalysis" folder in "Mapanalysis" target */,
+				6856015A2DFB185B00CE82A1 /* Exceptions for "Mapanalysis" folder in "Mapanalysis UIKit" target */,
+				681AD0FA2E0319300007DF87 /* Exceptions for "Mapanalysis" folder in "Mapanalysis SwiftUI" target */,
 			);
 			path = Mapanalysis;
 			sourceTree = "<group>";
@@ -37,13 +63,17 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		681AD0F32E0319300007DF87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				681AD0F42E0319300007DF87 /* MapKit.framework in Frameworks */,
+			);
+		};
 		68E2D9F82DFB05D900F3E0CF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				68E2DA152DFB063E00F3E0CF /* MapKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -60,7 +90,8 @@
 		68E2D9FC2DFB05D900F3E0CF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				68E2D9FB2DFB05D900F3E0CF /* Mapanalysis.app */,
+				68E2D9FB2DFB05D900F3E0CF /* Mapanalysis UIKit.app */,
+				681AD0F92E0319300007DF87 /* Mapanalysis SwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,9 +107,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		68E2D9FA2DFB05D900F3E0CF /* Mapanalysis */ = {
+		681AD0F12E0319300007DF87 /* Mapanalysis SwiftUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68E2DA0E2DFB05DB00F3E0CF /* Build configuration list for PBXNativeTarget "Mapanalysis" */;
+			buildConfigurationList = 681AD0F62E0319300007DF87 /* Build configuration list for PBXNativeTarget "Mapanalysis SwiftUI" */;
+			buildPhases = (
+				681AD0F22E0319300007DF87 /* Sources */,
+				681AD0F32E0319300007DF87 /* Frameworks */,
+				681AD0F52E0319300007DF87 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				68E2D9FD2DFB05D900F3E0CF /* Mapanalysis */,
+			);
+			name = "Mapanalysis SwiftUI";
+			productName = Mapanalysis;
+			productReference = 681AD0F92E0319300007DF87 /* Mapanalysis SwiftUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		68E2D9FA2DFB05D900F3E0CF /* Mapanalysis UIKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68E2DA0E2DFB05DB00F3E0CF /* Build configuration list for PBXNativeTarget "Mapanalysis UIKit" */;
 			buildPhases = (
 				68E2D9F72DFB05D900F3E0CF /* Sources */,
 				68E2D9F82DFB05D900F3E0CF /* Frameworks */,
@@ -86,16 +135,12 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				68E2D9FD2DFB05D900F3E0CF /* Mapanalysis */,
 			);
-			name = Mapanalysis;
-			packageProductDependencies = (
-			);
+			name = "Mapanalysis UIKit";
 			productName = Mapanalysis;
-			productReference = 68E2D9FB2DFB05D900F3E0CF /* Mapanalysis.app */;
+			productReference = 68E2D9FB2DFB05D900F3E0CF /* Mapanalysis UIKit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,6 +153,9 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					681AD0F12E0319300007DF87 = {
+						LastSwiftMigration = 1640;
+					};
 					68E2D9FA2DFB05D900F3E0CF = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -122,38 +170,120 @@
 			);
 			mainGroup = 68E2D9F22DFB05D900F3E0CF;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 68E2D9FC2DFB05D900F3E0CF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				68E2D9FA2DFB05D900F3E0CF /* Mapanalysis */,
+				68E2D9FA2DFB05D900F3E0CF /* Mapanalysis UIKit */,
+				681AD0F12E0319300007DF87 /* Mapanalysis SwiftUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		68E2D9F92DFB05D900F3E0CF /* Resources */ = {
+		681AD0F52E0319300007DF87 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68E2D9F92DFB05D900F3E0CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		68E2D9F72DFB05D900F3E0CF /* Sources */ = {
+		681AD0F22E0319300007DF87 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68E2D9F72DFB05D900F3E0CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		68E2DA0F2DFB05DB00F3E0CF /* Debug */ = {
+		681AD0F72E0319300007DF87 /* Debug configuration for PBXNativeTarget "Mapanalysis SwiftUI" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_TEAM = AFNBPBD3C5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mapanalysis/Info-SUI.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Maplysis SUI";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show nearby places.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide full map functionality.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.clfd.maplysis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		681AD0F82E0319300007DF87 /* Release configuration for PBXNativeTarget "Mapanalysis SwiftUI" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_TEAM = AFNBPBD3C5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mapanalysis/Info-SUI.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Maplysis SUI";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show nearby places.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide full map functionality.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.clfd.maplysis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		68E2DA0F2DFB05DB00F3E0CF /* Debug configuration for PBXNativeTarget "Mapanalysis UIKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -164,6 +294,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapanalysis/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Maplysis;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show nearby places.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide full map functionality.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -189,7 +320,7 @@
 			};
 			name = Debug;
 		};
-		68E2DA102DFB05DB00F3E0CF /* Release */ = {
+		68E2DA102DFB05DB00F3E0CF /* Release configuration for PBXNativeTarget "Mapanalysis UIKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -200,6 +331,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapanalysis/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Maplysis;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show nearby places.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to provide full map functionality.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -225,7 +357,7 @@
 			};
 			name = Release;
 		};
-		68E2DA112DFB05DB00F3E0CF /* Debug */ = {
+		68E2DA112DFB05DB00F3E0CF /* Debug configuration for PBXProject "Mapanalysis" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -289,7 +421,7 @@
 			};
 			name = Debug;
 		};
-		68E2DA122DFB05DB00F3E0CF /* Release */ = {
+		68E2DA122DFB05DB00F3E0CF /* Release configuration for PBXProject "Mapanalysis" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -349,22 +481,28 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		681AD0F62E0319300007DF87 /* Build configuration list for PBXNativeTarget "Mapanalysis SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				681AD0F72E0319300007DF87 /* Debug configuration for PBXNativeTarget "Mapanalysis SwiftUI" */,
+				681AD0F82E0319300007DF87 /* Release configuration for PBXNativeTarget "Mapanalysis SwiftUI" */,
+			);
+			defaultConfigurationName = Release;
+		};
 		68E2D9F62DFB05D900F3E0CF /* Build configuration list for PBXProject "Mapanalysis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				68E2DA112DFB05DB00F3E0CF /* Debug */,
-				68E2DA122DFB05DB00F3E0CF /* Release */,
+				68E2DA112DFB05DB00F3E0CF /* Debug configuration for PBXProject "Mapanalysis" */,
+				68E2DA122DFB05DB00F3E0CF /* Release configuration for PBXProject "Mapanalysis" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68E2DA0E2DFB05DB00F3E0CF /* Build configuration list for PBXNativeTarget "Mapanalysis" */ = {
+		68E2DA0E2DFB05DB00F3E0CF /* Build configuration list for PBXNativeTarget "Mapanalysis UIKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				68E2DA0F2DFB05DB00F3E0CF /* Debug */,
-				68E2DA102DFB05DB00F3E0CF /* Release */,
+				68E2DA0F2DFB05DB00F3E0CF /* Debug configuration for PBXNativeTarget "Mapanalysis UIKit" */,
+				68E2DA102DFB05DB00F3E0CF /* Release configuration for PBXNativeTarget "Mapanalysis UIKit" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
