@@ -25,9 +25,6 @@ class LocationManager: NSObject, ObservableObject {
 		manager.delegate = self
 		manager.distanceFilter = kCLDistanceFilterNone
 		configureAccuracy(.high)
-		
-		//Deprecated in the latest app version
-		//enableBackgroundUpdates(false)
 	}
 	
 	//MARK: - Permissions
@@ -44,7 +41,7 @@ class LocationManager: NSObject, ObservableObject {
 				
 			case .authorizedWhenInUse, .authorizedAlways:
 				debugPrint("[Request] Location Permission Allowed")
-				getCurrentLocation()
+				AppPreferences.shared.continuousUpdates ? startLocationUpdates() : getCurrentLocation()
 				
 			@unknown default:
 				debugPrint("[Request] Location Permission Unknown")
@@ -108,10 +105,9 @@ class LocationManager: NSObject, ObservableObject {
 		}
     }
     
-	@available(*, deprecated, message: "No need for continious updates in the last app version logic.")
     func enableBackgroundUpdates(_ enabled: Bool) {
         manager.allowsBackgroundLocationUpdates = enabled
-		manager.pausesLocationUpdatesAutomatically = !enabled
+		manager.pausesLocationUpdatesAutomatically = false
     }
 
 	//MARK: - Location Updates
@@ -121,16 +117,16 @@ class LocationManager: NSObject, ObservableObject {
 		manager.requestLocation()
 	}
 	
-	@available(*, deprecated, message: "No need for continious updates in the last app version logic.")
 	func startLocationUpdates() {
 		isUpdating = true
 		manager.startUpdatingLocation()
+		enableBackgroundUpdates(AppPreferences.shared.backgroundUpdates)
 	}
 	
-	@available(*, deprecated, message: "No need for continious updates in the last app version logic.")
 	func stopLocationUpdates() {
 		isUpdating = false
 		manager.stopUpdatingLocation()
+		enableBackgroundUpdates(false)
 	}
 }
 

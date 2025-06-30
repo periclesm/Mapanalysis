@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24093.8" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wR7-An-v0h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wR7-An-v0h">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24053.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -26,6 +26,25 @@
                                     <outletCollection property="gestureRecognizers" destination="Z2U-nV-cPm" appends="YES" id="K7l-Ys-vhZ"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atQ-Mw-pxu" userLabel="Places Button">
+                                <rect key="frame" x="107" y="707.33333333333337" width="41.666666666666657" height="41.333333333333371"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="atQ-Mw-pxu" secondAttribute="height" multiplier="1:1" id="AAB-iZ-COc"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
+                                    <imageReference key="image" image="map.fill" catalog="system" renderingMode="template"/>
+                                    <backgroundConfiguration key="background" strokeWidth="1" strokeOutset="2">
+                                        <color key="strokeColor" systemColor="systemOrangeColor"/>
+                                    </backgroundConfiguration>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
+                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                    <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="q6k-Q2-Zm4" kind="presentation" identifier="FavoritesSegue" modalPresentationStyle="pageSheet" id="gW3-12-NXd"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsC-Q1-Fuv">
                                 <rect key="frame" x="164.66666666666666" y="696" width="64" height="64"/>
                                 <constraints>
@@ -38,14 +57,15 @@
                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
                                     <imageReference key="image" image="location" catalog="system" renderingMode="template"/>
                                     <backgroundConfiguration key="background" strokeWidth="2" strokeOutset="3">
-                                        <color key="strokeColor" systemColor="systemMintColor"/>
+                                        <color key="strokeColor" systemColor="systemOrangeColor"/>
                                     </backgroundConfiguration>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="19" weight="medium"/>
                                     <color key="baseForegroundColor" systemColor="systemYellowColor"/>
                                     <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="centerToUserLocation" destination="wR7-An-v0h" eventType="touchUpInside" id="AmQ-Nx-jgq"/>
+                                    <action selector="requestLocationAction" destination="wR7-An-v0h" eventType="touchUpInside" id="fHS-3U-EpU"/>
+                                    <outletCollection property="gestureRecognizers" destination="6Nm-CW-TGt" appends="YES" id="m2K-Bk-Knf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JxI-0G-mBy" userLabel="OptionsButton">
@@ -65,25 +85,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="Cjh-Ir-1dy" kind="presentation" identifier="OptionsSegue" modalPresentationStyle="pageSheet" id="kyq-BY-SK4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atQ-Mw-pxu" userLabel="Places Button">
-                                <rect key="frame" x="107" y="707.33333333333337" width="41.666666666666657" height="41.333333333333371"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="atQ-Mw-pxu" secondAttribute="height" multiplier="1:1" id="AAB-iZ-COc"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
-                                    <imageReference key="image" image="map.fill" catalog="system" renderingMode="template"/>
-                                    <backgroundConfiguration key="background" strokeWidth="1" strokeOutset="2">
-                                        <color key="strokeColor" systemColor="systemOrangeColor"/>
-                                    </backgroundConfiguration>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
-                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
-                                    <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="q6k-Q2-Zm4" kind="presentation" identifier="FavoritesSegue" modalPresentationStyle="pageSheet" id="gW3-12-NXd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -124,6 +125,12 @@
                         <outlet property="delegate" destination="wR7-An-v0h" id="Ahp-2I-SEd"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="6Nm-CW-TGt">
+                    <connections>
+                        <action selector="continuousUpdatesAction:" destination="wR7-An-v0h" id="KWu-v6-PnX"/>
+                        <outlet property="delegate" destination="wR7-An-v0h" id="oGO-OC-W8M"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="670" y="55"/>
         </scene>
@@ -132,7 +139,7 @@
             <objects>
                 <viewController storyboardIdentifier="AnnotationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LTQ-VC-Tca" customClass="AnnotationVC" customModule="Mapanalysis_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y4h-ci-dal">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hWU-SM-Smd" userLabel="Address Stack">
@@ -269,7 +276,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FavoritesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q6k-Q2-Zm4" customClass="FavoritesVC" customModule="Mapanalysis_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="54" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="rvz-WD-rRP">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <inset key="separatorInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -294,23 +301,23 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="favoriteCell" id="0KY-ob-jWz" customClass="FavoriteCell" customModule="Mapanalysis_UIKit" customModuleProvider="target">
-                                <rect key="frame" x="20" y="135.33333206176758" width="353" height="82.666664123535156"/>
+                                <rect key="frame" x="20" y="135.33333206176758" width="353" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0KY-ob-jWz" id="sxg-eg-6kU">
-                                    <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="82.666664123535156"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vj7-6i-9Z9">
-                                            <rect key="frame" x="16" y="9.9999999999999964" width="296.66666666666669" height="62.666666666666657"/>
+                                            <rect key="frame" x="16" y="10" width="296.66666666666669" height="62"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Annotation Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTA-ht-AYt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="20.666666666666668"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="20.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="CAN-rZ-tnl" userLabel="Latitude Stack">
-                                                    <rect key="frame" x="0.0" y="25.666666666666664" width="101" height="16"/>
+                                                    <rect key="frame" x="0.0" y="25.333333333333336" width="101" height="16"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="latitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hN4-8U-Onl">
                                                             <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="16"/>
@@ -327,16 +334,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="1WR-Gy-ND8" userLabel="Longtitude Stack">
-                                                    <rect key="frame" x="0.0" y="46.666666666666664" width="117" height="16"/>
+                                                    <rect key="frame" x="0.0" y="46.333333333333336" width="117" height="15.666666666666664"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="longtitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhT-Ur-3l2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="64.666666666666671" height="16"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="64.666666666666671" height="15.666666666666666"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUR-8y-pKf">
-                                                            <rect key="frame" x="73.666666666666671" y="0.0" width="43.333333333333329" height="16"/>
+                                                            <rect key="frame" x="73.666666666666671" y="0.0" width="43.333333333333329" height="15.666666666666666"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -409,7 +416,7 @@ Go on! Add one...</string>
             <objects>
                 <tableViewController storyboardIdentifier="OptionsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cjh-Ir-1dy" customClass="OptionsVC" customModule="Mapanalysis_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="jwb-jH-6Xu">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="pxJ-LG-Z3c"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -433,7 +440,10 @@ Go on! Add one...</string>
                             </constraints>
                         </view>
                         <sections>
-                            <tableViewSection headerTitle="Location Update" footerTitle="When off, the device will ask only once for the current location." id="ME9-MO-csU">
+                            <tableViewSection headerTitle="Location Update" id="ME9-MO-csU">
+                                <string key="footerTitle">Continuous asks for location updates at intervals and updates the user location on the map. 
+Background updates gets the current location when the app is in the background.
+Long press on location button in map screen enables this option while a simple tap only updates the location once.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="6QC-ZS-8sp">
                                         <rect key="frame" x="20" y="135.33333206176758" width="353" height="50"/>
@@ -442,17 +452,17 @@ Go on! Add one...</string>
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Center map on user location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deZ-xO-rYC">
-                                                    <rect key="frame" x="16" y="16" width="193.33333333333334" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Continuous location updates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deZ-xO-rYC">
+                                                    <rect key="frame" x="16" y="16" width="196" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWs-Eb-KRI">
-                                                    <rect key="frame" x="271" y="10" width="68" height="30"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HWs-Eb-KRI">
+                                                    <rect key="frame" x="288" y="9.6666666666666643" width="51" height="31"/>
                                                     <color key="onTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
-                                                        <action selector="centerMapAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="7EO-Op-vw7"/>
+                                                        <action selector="continuousUpdatesAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="45H-sR-ngI"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -466,33 +476,33 @@ Go on! Add one...</string>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="uFh-Vb-9vS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="OpS-AV-e7h">
                                         <rect key="frame" x="20" y="185.33333206176758" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uFh-Vb-9vS" id="BtA-db-hAT">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OpS-AV-e7h" id="E54-LU-Rs1">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Show heading when following user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3T-s8-9s1">
-                                                    <rect key="frame" x="15.999999999999986" y="16" width="236.66666666666663" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Background location updates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nt0-Ko-AGb">
+                                                    <rect key="frame" x="16" y="16" width="200" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RUL-0P-RiM">
-                                                    <rect key="frame" x="271" y="10" width="68" height="30"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9gh-NF-0yC">
+                                                    <rect key="frame" x="288" y="9.6666666666666643" width="51" height="31"/>
                                                     <color key="onTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
-                                                        <action selector="headingOnMapAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="DEC-jc-K6V"/>
+                                                        <action selector="backgroundUpdatesAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="zf6-s6-bgp"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="RUL-0P-RiM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q3T-s8-9s1" secondAttribute="trailing" constant="8" id="IxF-ia-xCz"/>
-                                                <constraint firstItem="Q3T-s8-9s1" firstAttribute="leading" secondItem="BtA-db-hAT" secondAttribute="leading" constant="16" id="Nvn-eK-lCr"/>
-                                                <constraint firstAttribute="trailing" secondItem="RUL-0P-RiM" secondAttribute="trailing" constant="16" id="k9O-fd-Xye"/>
-                                                <constraint firstItem="Q3T-s8-9s1" firstAttribute="centerY" secondItem="RUL-0P-RiM" secondAttribute="centerY" id="sBH-Gn-tWl"/>
-                                                <constraint firstItem="RUL-0P-RiM" firstAttribute="centerY" secondItem="BtA-db-hAT" secondAttribute="centerY" id="ygf-5W-pD1"/>
+                                                <constraint firstAttribute="trailing" secondItem="9gh-NF-0yC" secondAttribute="trailing" constant="16" id="6oa-5i-XJq"/>
+                                                <constraint firstItem="Nt0-Ko-AGb" firstAttribute="leading" secondItem="E54-LU-Rs1" secondAttribute="leading" constant="16" id="EL3-8f-KBy"/>
+                                                <constraint firstItem="Nt0-Ko-AGb" firstAttribute="centerY" secondItem="9gh-NF-0yC" secondAttribute="centerY" id="Lw7-i0-sEZ"/>
+                                                <constraint firstItem="9gh-NF-0yC" firstAttribute="centerY" secondItem="E54-LU-Rs1" secondAttribute="centerY" id="csy-cX-d3T"/>
+                                                <constraint firstItem="9gh-NF-0yC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Nt0-Ko-AGb" secondAttribute="trailing" constant="8" id="psA-x4-gCd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
@@ -502,10 +512,10 @@ Go on! Add one...</string>
                             <tableViewSection headerTitle="Map Display" id="IUE-s9-eJf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="4x5-eI-jbL">
-                                        <rect key="frame" x="20" y="319.33333015441895" width="353" height="97"/>
+                                        <rect key="frame" x="20" y="399.66666412353516" width="353" height="92.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4x5-eI-jbL" id="6x2-ey-2Fs">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="97"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="92.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Map zoom distance (in meters)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eI-Se-ONn">
@@ -515,20 +525,20 @@ Go on! Add one...</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="500" minValue="100" maxValue="1000" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTj-qU-3NG">
-                                                    <rect key="frame" x="44.666666666666657" y="46" width="256.33333333333337" height="35"/>
+                                                    <rect key="frame" x="42.666666666666657" y="46" width="260.33333333333337" height="31.333333333333329"/>
                                                     <color key="minimumTrackTintColor" systemColor="systemPurpleColor"/>
                                                     <connections>
                                                         <action selector="mapZoomLevelAction:" destination="Cjh-Ir-1dy" eventType="valueChanged" id="wnJ-sJ-ePk"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QqG-cZ-HLg">
-                                                    <rect key="frame" x="16" y="56.333333333333336" width="20.666666666666671" height="14.333333333333336"/>
+                                                    <rect key="frame" x="16" y="54" width="20.666666666666671" height="14.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r79-Cd-rmW">
-                                                    <rect key="frame" x="309" y="56.333333333333336" width="28" height="14.333333333333336"/>
+                                                    <rect key="frame" x="309" y="54" width="28" height="14.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
@@ -552,10 +562,10 @@ Go on! Add one...</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="U4W-kP-FQq">
-                                        <rect key="frame" x="20" y="416.33333015441895" width="353" height="94"/>
+                                        <rect key="frame" x="20" y="492" width="353" height="93.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U4W-kP-FQq" id="7ZY-R5-jGB">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="93.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Map type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7X-fc-EKt">
@@ -565,7 +575,7 @@ Go on! Add one...</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y7e-u7-jvo">
-                                                    <rect key="frame" x="46.666666666666657" y="46" width="260" height="33"/>
+                                                    <rect key="frame" x="46.666666666666657" y="46" width="260" height="32.333333333333329"/>
                                                     <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="t6G-vc-09x"/>
@@ -597,23 +607,23 @@ Go on! Add one...</string>
                             <tableViewSection headerTitle="Geocoding" footerTitle="Forward (from address) and reverse (from coordinates) geocoding setup." id="7iQ-Tp-6yI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="JG8-2N-Rce">
-                                        <rect key="frame" x="20" y="572.99999618530273" width="353" height="94"/>
+                                        <rect key="frame" x="20" y="648.00000190734863" width="353" height="93.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JG8-2N-Rce" id="6U4-Qi-Tgs">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="93.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="1tR-s4-l9W">
-                                                    <rect key="frame" x="16" y="16" width="321" height="62"/>
+                                                    <rect key="frame" x="16" y="16.000000000000004" width="321" height="61.333333333333343"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Geocoding provider" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Na-o7-TfG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="321" height="18.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="321" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UPh-DC-kGa">
-                                                            <rect key="frame" x="30.666666666666657" y="30.333333333333336" width="260" height="32.666666666666671"/>
+                                                            <rect key="frame" x="30.666666666666657" y="30" width="260" height="32.333333333333329"/>
                                                             <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="oMY-xb-0Hj"/>
@@ -646,14 +656,14 @@ Go on! Add one...</string>
                             <tableViewSection id="5CX-IJ-za8" userLabel="Info">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="YgX-z8-XqG">
-                                        <rect key="frame" x="20" y="730.66666221618652" width="353" height="69"/>
+                                        <rect key="frame" x="20" y="805.00000381469727" width="353" height="68.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YgX-z8-XqG" id="UCT-xc-KPs">
-                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="68.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Why Google and Bing geocoding are disabled?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzQ-oe-ob5">
-                                                    <rect key="frame" x="16" y="16" width="290.66666666666669" height="37"/>
+                                                    <rect key="frame" x="16" y="16.000000000000004" width="290.66666666666669" height="36.333333333333343"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -677,8 +687,8 @@ Go on! Add one...</string>
                         </sections>
                     </tableView>
                     <connections>
-                        <outlet property="centerSwitch" destination="HWs-Eb-KRI" id="uTg-kY-ONF"/>
-                        <outlet property="headingSwitch" destination="RUL-0P-RiM" id="b10-Wl-Rn9"/>
+                        <outlet property="backgroundSwitch" destination="9gh-NF-0yC" id="lIS-Lg-8LR"/>
+                        <outlet property="continuousSwitch" destination="HWs-Eb-KRI" id="TsG-IP-cBO"/>
                         <outlet property="mapTypeSegment" destination="y7e-u7-jvo" id="Sbe-xr-9kS"/>
                         <outlet property="mapZoomSlider" destination="mTj-qU-3NG" id="oDp-kW-cQX"/>
                     </connections>
@@ -761,9 +771,6 @@ Should the need to create another showcase app arise (ex. Nominatim publishes a 
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

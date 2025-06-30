@@ -20,23 +20,23 @@ class AppPreferences: NSObject {
 	static var shared = AppPreferences()
 	var defaults = UserDefaults.standard
 	
-	var centerMap: Bool {
+	var continuousUpdates: Bool {
 		set {
-			defaults.set(newValue, forKey: "CenterMap")
+			defaults.set(newValue, forKey: "ContinuousUpdates")
 		}
 		
 		get {
-			return defaults.object(forKey: "CenterMap") as? Bool ?? false
+			return defaults.object(forKey: "ContinuousUpdates") as? Bool ?? false
 		}
 	}
 	
-	var headingOnMap: Bool {
+	var backgroundUpdates: Bool {
 		set {
-			defaults.set(newValue, forKey: "HeadingOnMap")
+			defaults.set(newValue, forKey: "BackgroundUpdates")
 		}
 		
 		get {
-			return defaults.object(forKey: "HeadingOnMap") as? Bool ?? false
+			return defaults.object(forKey: "BackgroundUpdates") as? Bool ?? false
 		}
 	}
 	

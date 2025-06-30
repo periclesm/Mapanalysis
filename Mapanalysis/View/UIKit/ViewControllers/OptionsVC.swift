@@ -9,13 +9,13 @@ import UIKit
 
 class OptionsVC: UITableViewController {
 	
-	@IBOutlet weak var centerSwitch: UISwitch!
-	@IBOutlet weak var headingSwitch: UISwitch!
+	@IBOutlet weak var continuousSwitch: UISwitch!
+	@IBOutlet weak var backgroundSwitch: UISwitch!
 	@IBOutlet weak var mapZoomSlider: UISlider!
 	@IBOutlet weak var mapTypeSegment: UISegmentedControl!
 	
-	var centerMap: ((Bool) -> Void)?
-	var headingOnMap: ((Bool) -> Void)?
+	var continuousUpdates: ((Bool) -> Void)?
+	var backgroundUpdates: ((Bool) -> Void)?
 	var setMapType: (() -> Void)?
 	var setMapZoomLevel: (() -> Void)?
 	
@@ -39,24 +39,24 @@ class OptionsVC: UITableViewController {
 		sheetPresentationController?.largestUndimmedDetentIdentifier = .none
 		sheetPresentationController?.detents = [ .medium(), .large() ]
 		
-		centerSwitch.isOn = AppPreferences.shared.centerMap
-		headingSwitch.isOn = AppPreferences.shared.headingOnMap
-		headingSwitch.isEnabled = centerSwitch.isOn
+		continuousSwitch.isOn = AppPreferences.shared.continuousUpdates
+		backgroundSwitch.isOn = AppPreferences.shared.backgroundUpdates
+		backgroundSwitch.isEnabled = continuousSwitch.isOn
 		mapZoomSlider.value = Float(AppPreferences.shared.mapZoom)
 		mapTypeSegment.selectedSegmentIndex = AppPreferences.shared.mapType.rawValue
 	}
 	
 	//MARK: - IBActions
 	
-	@IBAction func centerMapAction(_ sender: UISwitch) {
-		AppPreferences.shared.centerMap = sender.isOn
-		headingSwitch.isEnabled = sender.isOn
-		centerMap?(sender.isOn)
+	@IBAction func continuousUpdatesAction(_ sender: UISwitch) {
+		AppPreferences.shared.continuousUpdates = sender.isOn
+		backgroundSwitch.isEnabled = sender.isOn
+		continuousUpdates?(sender.isOn)
 	}
 	
-	@IBAction func headingOnMapAction(_ sender: UISwitch) {
-		AppPreferences.shared.headingOnMap = sender.isOn
-		headingOnMap?(sender.isOn)
+	@IBAction func backgroundUpdatesAction(_ sender: UISwitch) {
+		AppPreferences.shared.backgroundUpdates = sender.isOn
+		backgroundUpdates?(sender.isOn)
 	}
 	
 	@IBAction func mapZoomLevelAction(_ sender: UISlider) {
