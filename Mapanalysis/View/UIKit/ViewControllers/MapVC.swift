@@ -20,7 +20,7 @@ class MapVC: UIViewController {
 		super.viewDidLoad()
 		
 		locationManager.onLocationUpdate = { [weak self] location in
-			self?.showLocation(on: location, userInitiated: false)
+			self?.showLocation(on: location, userInitiated: false, defaultZoom: true)
 		}
 		
 		setupUI()
@@ -86,7 +86,7 @@ class MapVC: UIViewController {
 	private func bindFavorites(_ dvc: FavoritesVC) {
 		dvc.presentAnnotation = { [weak self] annotation in
 			let location = CLLocation(latitude: annotation.latitude, longitude: annotation.longitude)
-			self?.showLocation(on: location, userInitiated: true)
+			self?.showLocation(on: location, userInitiated: true, defaultZoom: false)
 		}
 	}
 	
@@ -103,7 +103,7 @@ class MapVC: UIViewController {
 		var config = locationButton.configuration
 		
 		if continuousEnabled {
-			config?.background.strokeColor = .systemMint
+			config?.background.strokeColor = .systemTeal
 		} else {
 			config?.background.strokeColor = .systemOrange
 		}
@@ -134,23 +134,11 @@ class MapVC: UIViewController {
 		mapView.setRegion(region, animated: true)
 	}
 	
-	//The heck! I used AI to get this... There is no API function for that and I had no clue.
-	///Get the Current Latitudinal Map Zoom (aka, either the default or the one the user set by pinching)
-	private func getCurrentLatitudinalMeters() -> Double {
-		let region = mapView.region
-		return region.span.latitudeDelta * 111_000
-	}
-	
-	///Get the Current Longitudinal Map Zoom (aka, either the default or the one the user set by pinching)
-	private func getCurrentLongitudinalMeters() -> Double {
-		let region = mapView.region
-		return region.span.longitudeDelta * 111_000 * cos(region.center.latitude * .pi / 180)
-	}
-	
 	//MARK: - Map configuration and functions
 	
 	private func mapOptions() {
 		mapView.showsLargeContentViewer = true
+		//showsUserLocation is actually an app hack. User Location in MapKit is not the same as in Core Location. The app uses mostly Core Location to track the user but when it is disabled, the map keeps showing the blue dot that comes from the MapKit and not Core Location (to have constant location updates, enable Continuous Location updates). This is mostly a UX feature to keep the user with a sense of locality even when location updates are turned off.
 		mapView.showsUserLocation = true
 		mapView.showsScale = true
 		mapView.showsCompass = true
@@ -183,17 +171,11 @@ class MapVC: UIViewController {
 	 In both User Initiated cases, Annotation View appears and needs to have the pin and map re-centered to the top half of the screen (bottom half is the Annotation View)
 	 In Location Manager case, just a `setRegion` will do.
 	 */
-	private func showLocation(on location: CLLocation, userInitiated: Bool) {
+	private func showLocation(on location: CLLocation, userInitiated: Bool, defaultZoom: Bool) {
 		debugPrint(String.debugInfo() + "Show location")
 		debugPrint("lat: \(location.coordinate.latitude), lon: \(location.coordinate.longitude)")
 		debugPrint("mapzoom: \(AppPreferences.shared.mapZoom)")
 		mapView.removeAnnotations(mapView.annotations)
-		
-		let region = MKCoordinateRegion(
-			center: location.coordinate,
-			latitudinalMeters: userInitiated ? getCurrentLatitudinalMeters() : AppPreferences.shared.mapZoom,
-			longitudinalMeters: userInitiated ? getCurrentLongitudinalMeters() : AppPreferences.shared.mapZoom
-		)
 		
 		if userInitiated {
 			Task(priority: .userInitiated) { [weak self] in
@@ -213,6 +195,12 @@ class MapVC: UIViewController {
 				}
 			}
 		} else {
+			let region = MKCoordinateRegion(
+				center: location.coordinate,
+				latitudinalMeters: defaultZoom ? AppPreferences.shared.mapZoom : mapView.currentLatitudinalMeters(),
+				longitudinalMeters: defaultZoom ? AppPreferences.shared.mapZoom : mapView.currentLongitudinalMeters()
+			)
+			
 			mapView.setRegion(region, animated: true)
 		}
 	}
@@ -220,7 +208,7 @@ class MapVC: UIViewController {
 	///Used in the callback when user sets the default Map Zoom in settings. It simply zooms the map on the Map Center
 	private func zoomCurrentLocation() {
 		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-		showLocation(on: location, userInitiated: false)
+		showLocation(on: location, userInitiated: false, defaultZoom: false)
 	}
 	
 	///Use it to center the map over the Annotation Point
@@ -277,7 +265,6 @@ class MapVC: UIViewController {
 					locationManager.startLocationUpdates()
 				}
 				
-				locationManager.enableBackgroundUpdates(AppPreferences.shared.backgroundUpdates)
 				locationButtonRingAppearance(continuousEnabled: AppPreferences.shared.continuousUpdates)
 				locationButtonBackgroundAppearance()
 				
@@ -292,6 +279,6 @@ class MapVC: UIViewController {
 		
 		//Recenter Map
 		let tappedLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-		showLocation(on: tappedLocation, userInitiated: true)
+		showLocation(on: tappedLocation, userInitiated: true, defaultZoom: false)
 	}
 }

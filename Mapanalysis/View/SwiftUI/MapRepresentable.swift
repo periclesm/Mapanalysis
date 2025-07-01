@@ -8,14 +8,22 @@
 import SwiftUI
 import MapKit
 
+/*
+ Important Note:
+ There is no need to have both MapRepresentable and MapVC leading to duplicate code that is hard to maintain (once change here needs to change there and vice-versa).
+ I will combine these two so that one class for both will to the trick.
+ Will do... soon... ish!
+ */
+
 struct MapRepresentable: UIViewRepresentable {
 	@Binding var annotation: Annotation?
 	@Binding var showAnnotation: Bool
-	var centerMap: Bool
-	var headingOnMap: Bool
+	var continuousUpdates: Bool
+	var backgroundUpdates: Bool
 	var mapType: MapType
 	var mapZoom: Double
-	let locationManager: LocationManager
+	
+	let locationManager: LocationManager //DO NOT re-initialize location manager. It needs only one instance to run. Pass it from MapView.
 	
 	var onTap: ((CLLocationCoordinate2D) -> Void)? = nil
 	
@@ -29,12 +37,16 @@ struct MapRepresentable: UIViewRepresentable {
 		
 		//Set options and map type, ask for Permissions and update location
 		mapOptions(mapView)
+		setMapType(in: mapView)
+		setMapZoom(in: mapView)
+		
+		//This is a hack! See coordinator
+		context.coordinator.originalMapType = mapType
+		context.coordinator.originalMapZoom = mapZoom
 		
 		locationManager.onLocationUpdate = { location in
 			DispatchQueue.main.async {
-//				if centerMap {
-					showLocation(location, mapView: mapView)
-//				}
+				showLocation(on: location, mapView: mapView)
 			}
 		}
 
@@ -42,22 +54,30 @@ struct MapRepresentable: UIViewRepresentable {
 	}
 	
 	func updateUIView(_ uiView: MKMapView, context: Context) {
-		setMapType(in: uiView)
-		setMapZoom(in: uiView)
-		if centerMap {
-			centerMap(in: uiView)
-			
-			if headingOnMap {
-				headingOnMap(in: uiView)
-			}
-			
-			followUserLocation(in: uiView)
-			self.locationManager.getCurrentLocation()
+		//Using the hack in order to control when mapType will run (when changed from Options)
+		//Setting the MapType should not run each and every time the map needs an update (ex. Continuous updates)
+		if mapType != context.coordinator.originalMapType {
+			setMapType(in: uiView)
+			context.coordinator.originalMapType = mapType
+		}
+		
+		//Using the hack in the same concept as above.
+		if mapZoom != context.coordinator.originalMapZoom {
+			setMapZoom(in: uiView)
+			context.coordinator.originalMapZoom = mapZoom
 		}
 		
 		if let annotation {
-			showLocation(annotation.location, annotation: annotation, mapView: uiView)
+			showLocation(on: annotation.location, annotation: annotation, mapView: uiView)
 		}
+		
+		if continuousUpdates {
+			locationManager.startLocationUpdates()
+		} else {
+			locationManager.stopLocationUpdates()
+		}
+		
+		locationManager.enableBackgroundUpdates(backgroundUpdates)
 	}
 	
 	func dismantleUIView(_ uiView: MKMapView, coordinator: Coordinator) {
@@ -70,8 +90,9 @@ struct MapRepresentable: UIViewRepresentable {
 	
 	//MARK: - Map configuration and functions
 	
-	func mapOptions(_ mapView: MKMapView) {
+	private func mapOptions(_ mapView: MKMapView) {
 		mapView.showsLargeContentViewer = true
+		//showsUserLocation is actually an app hack. User Location in MapKit is not the same as in Core Location. The app uses mostly Core Location to track the user but when it is disabled, the map keeps showing the blue dot that comes from the MapKit and not Core Location (to have constant location updates, enable Continuous Location updates). This is mostly a UX feature to keep the user with a sense of locality even when location updates are turned off.
 		mapView.showsUserLocation = true
 		mapView.showsScale = true
 		mapView.showsCompass = true
@@ -84,60 +105,9 @@ struct MapRepresentable: UIViewRepresentable {
 					false
 			}
 		}()
-		
-		if centerMap {
-			mapView.userTrackingMode = .follow
-			
-			if headingOnMap {
-				mapView.userTrackingMode = .followWithHeading
-			}
-		}
 	}
 	
-	private func followUserLocation(in mapView: MKMapView) {
-		switch mapView.userTrackingMode {
-			case .none:
-				debugPrint("Location does not follow User -- Enabling again")
-				if centerMap {
-					if headingOnMap {
-						mapView.userTrackingMode = .followWithHeading
-					} else {
-						mapView.userTrackingMode = .follow
-					}
-				}
-				
-			case .follow:
-				debugPrint("Location follows User")
-				
-			case .followWithHeading:
-				debugPrint("Location follows User with Heading")
-				
-			@unknown default:
-				debugPrint("Unknown follow user mode")
-		}
-	}
-	
-	func centerMap(in mapView: MKMapView) {
-		if centerMap {
-			if headingOnMap {
-				mapView.userTrackingMode = .followWithHeading
-			} else {
-				mapView.userTrackingMode = .follow
-			}
-		} else {
-			mapView.userTrackingMode = .none
-		}
-	}
-	
-	func headingOnMap(in mapView: MKMapView) {
-		if centerMap {
-			mapView.userTrackingMode = .followWithHeading
-		} else {
-			mapView.userTrackingMode = .none
-		}
-	}
-	
-	func setMapType(in mapView: MKMapView) {
+	private func setMapType(in mapView: MKMapView) {
 		switch mapType {
 			case .standard:
 				mapView.mapType = .standard
@@ -148,7 +118,36 @@ struct MapRepresentable: UIViewRepresentable {
 		}
 	}
 	
-	func setMapZoom(in mapView: MKMapView) {
+	private func showLocation(on location: CLLocation, annotation: Annotation? = nil, mapView: MKMapView) {
+		mapView.removeAnnotations(mapView.annotations)
+		
+		if let annotation {
+			centerMap(at: annotation.coordinate, in: mapView)
+			createPin(annotation, in: mapView)
+		} else {
+			let region = MKCoordinateRegion(
+				center: location.coordinate,
+				latitudinalMeters: mapView.currentLatitudinalMeters(),
+				longitudinalMeters: mapView.currentLongitudinalMeters()
+			)
+			
+			mapView.setRegion(region, animated: true)
+		}
+	}
+	
+	private func centerMap(in mapView: MKMapView) {
+		if continuousUpdates {
+			if backgroundUpdates {
+				mapView.userTrackingMode = .followWithHeading
+			} else {
+				mapView.userTrackingMode = .follow
+			}
+		} else {
+			mapView.userTrackingMode = .none
+		}
+	}
+	
+	private func setMapZoom(in mapView: MKMapView) {
 		let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
 		
 		mapView.setRegion(
@@ -161,39 +160,6 @@ struct MapRepresentable: UIViewRepresentable {
 		)
 	}
 	
-//	func showUserLocation() {
-//		if AppPreferences.shared.continuousUpdates {
-//			if locationManager.isUpdating {
-//				locationManager.stopLocationUpdates()
-//			}
-//			else {
-//				locationManager.startLocationUpdates()
-//			}
-//		}
-//		else {
-//			locationManager.stopLocationUpdates()
-//			locationManager.getCurrentLocation()
-//		}
-//	}
-	
-	func showLocation(_ location: CLLocation, annotation: Annotation? = nil, mapView: MKMapView) {
-		mapView.removeAnnotations(mapView.annotations)
-		
-		let region = MKCoordinateRegion(
-			center: location.coordinate,
-			latitudinalMeters: AppPreferences.shared.mapZoom,
-			longitudinalMeters: AppPreferences.shared.mapZoom
-		)
-		
-		if let annotation {
-			centerMap(at: annotation.coordinate, in: mapView)
-			createPin(annotation, in: mapView)
-		} else {
-			mapView.setRegion(region, animated: true)
-		}
-	}
-	
-	//Use it to center the map over the Annotation Point
 	private func centerMap(at coordinate: CLLocationCoordinate2D, in mapView: MKMapView) {
 		//Get the screen point from coordinate
 		let point = mapView.convert(coordinate, toPointTo: mapView)
@@ -217,6 +183,13 @@ struct MapRepresentable: UIViewRepresentable {
 	class Coordinator: NSObject, MKMapViewDelegate {
 		var parent: MapRepresentable
 		
+		/*
+		 Adding these two variables to keep track of the changes in map zoom and type.
+		 These variables need mutable state that UIViewRepresentable (SUI declarative) dislikes so the coordinator (UIK imperative) is the best place to put them.
+		 */
+		var originalMapType: MapType = .standard
+		var originalMapZoom: Double = 0
+		
 		init(_ parent: MapRepresentable) {
 			self.parent = parent
 		}
@@ -235,9 +208,7 @@ struct MapRepresentable: UIViewRepresentable {
 				 and annotator should be initialied as annotator = AnnotatorService(provider: ).
 				 */
 				if let annotation = await AnnotatorService().createAnnotation(location) {
-//					DispatchQueue.main.async {
 						self.parent.annotation = annotation
-//					}
 				}
 			}
 		}

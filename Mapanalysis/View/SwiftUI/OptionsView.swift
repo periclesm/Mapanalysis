@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct OptionsView: View {
-	@Binding var centerMap: Bool
-	@Binding var headingOnMap: Bool
+	@Binding var continuousUpdates: Bool
+	@Binding var backgroundUpdates: Bool
 	@Binding var mapType: MapType
 	@Binding var mapZoom: Double
 	@State var geocoder: GeocoderService = AppPreferences.shared.geocoder
@@ -29,21 +29,21 @@ struct OptionsView: View {
 				
 				List {
 					Section(header: Text("Location Update"),
-							footer: Text("When off, the device will ask only once for the current location.")) {
-						Toggle("Center map on user location", isOn: $centerMap)
+							footer: Text("Continuous asks for location updates at intervals and updates the user location on the map.\nBackground updates gets the current location when the app is in the background.\nLong press on location button in map screen enables this option while a simple tap only updates the location once.")) {
+						Toggle("Continuous location updates", isOn: $continuousUpdates)
 							.font(.system(size: 15))
 							.tint(Color.purple)
-							.onChange(of: centerMap) { oldValue, newValue in
-								AppPreferences.shared.centerMap = newValue
+							.onChange(of: continuousUpdates) { oldValue, newValue in
+								AppPreferences.shared.continuousUpdates = newValue
 							}
 						
-						Toggle("Show heading when following user", isOn: $headingOnMap)
+						Toggle("Background location updates", isOn: $backgroundUpdates)
 							.font(.system(size: 15))
 							.tint(Color.purple)
-							.onChange(of: headingOnMap) { oldValue, newValue in
-								AppPreferences.shared.headingOnMap = newValue
+							.onChange(of: backgroundUpdates) { oldValue, newValue in
+								AppPreferences.shared.backgroundUpdates = newValue
 							}
-							.disabled(!centerMap)
+							.disabled(!continuousUpdates)
 					}
 					
 					Section(header: Text("Map Display")) {
@@ -81,8 +81,8 @@ struct OptionsView: View {
 								//.tag(GeocoderService.google)
 							Text("Bing Maps").disabled(true)
 								//.tag(GeocoderService.bing)
-								.onChange(of: mapType, { oldValue, newValue in
-									AppPreferences.shared.mapType = newValue
+								.onChange(of: geocoder, { oldValue, newValue in
+									AppPreferences.shared.geocoder = newValue
 								})
 						}
 						.font(.system(size: 15))
@@ -116,5 +116,5 @@ struct OptionsView: View {
 }
 
 #Preview {
-	OptionsView(centerMap: .constant(true), headingOnMap: .constant(false), mapType: .constant(.standard), mapZoom: .constant(800))
+	OptionsView(continuousUpdates: .constant(false), backgroundUpdates: .constant(false), mapType: .constant(.standard), mapZoom: .constant(800))
 }

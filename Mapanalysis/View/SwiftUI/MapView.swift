@@ -11,8 +11,8 @@ import MapKit
 struct MapView: View {
 	@State var annotation: Annotation?
 	@State var coordinate: CLLocationCoordinate2D? = nil
-	@State var centerMap = AppPreferences.shared.centerMap
-	@State var headingOnMap = AppPreferences.shared.headingOnMap
+	@State var continuousUpdates = AppPreferences.shared.continuousUpdates
+	@State var backgroundUpdates = AppPreferences.shared.backgroundUpdates
 	@State var mapType = AppPreferences.shared.mapType
 	@State var mapZoom = AppPreferences.shared.mapZoom
 	
@@ -21,6 +21,8 @@ struct MapView: View {
 	@State var showAnnotation = false
 	
 	@StateObject var locationManager = LocationManager()
+	@State private var longPressActionPerformed = false
+	@State private var locationIsUpdating = false //that's a SUI-UIK hack
 	
 	init() {
 		let permissionManager = LocationManager()
@@ -31,8 +33,8 @@ struct MapView: View {
 		ZStack {
 			MapRepresentable(annotation: $annotation,
 							 showAnnotation: $showAnnotation,
-							 centerMap: centerMap,
-							 headingOnMap: headingOnMap,
+							 continuousUpdates: continuousUpdates,
+							 backgroundUpdates: backgroundUpdates,
 							 mapType: mapType,
 							 mapZoom: mapZoom,
 							 locationManager: locationManager) { coordinate in
@@ -77,8 +79,19 @@ struct MapView: View {
 					}
 					
 					Button(action: {
-						locationManager.getCurrentLocation()
-						
+						if longPressActionPerformed {
+							longPressActionPerformed = false
+						} else {
+							if continuousUpdates {
+								if locationIsUpdating {
+									locationManager.stopLocationUpdates()
+								} else {
+									locationManager.startLocationUpdates()
+								}
+							} else {
+								locationManager.getCurrentLocation()
+							}
+						}
 					}) {
 						Image(systemName: "location")
 							.resizable()
@@ -87,14 +100,34 @@ struct MapView: View {
 							.foregroundColor(.yellow)
 					}
 					.frame(width: 64, height: 64)
-					.background(.purple)
+					.background(locationIsUpdating ? Color.teal : Color.purple)
 					.clipShape(Circle())
 					.shadow(radius: 4)
-//					.overlay(
-//						RoundedRectangle(cornerRadius: 64)
-//							.stroke(Color.yellow, lineWidth: 2)
-//						//hey! where's the outset from the UIButton? Huh???
-//					)
+					.onAppear {
+						locationManager.onIsUpdatingChanged = { newValue in
+							DispatchQueue.main.async {
+								self.locationIsUpdating = newValue
+							}
+						}
+					}
+					.simultaneousGesture(
+						LongPressGesture(minimumDuration: 0.5)
+							.onEnded { _ in
+								longPressActionPerformed = true
+								if continuousUpdates {
+									continuousUpdates = false
+									locationManager.stopLocationUpdates()
+								} else {
+									continuousUpdates = true
+									locationManager.startLocationUpdates()
+								}
+							}
+					)
+					.overlay(
+						RoundedRectangle(cornerRadius: 64)
+							.stroke(continuousUpdates ? .teal : .orange, lineWidth: 2)
+							.padding(-2) //padding is the outset of UIButton! WHOOT???
+					)
 					
 					Button(action: {
 						showOptions = true
@@ -110,8 +143,8 @@ struct MapView: View {
 					.clipShape(Circle())
 					.shadow(radius: 4)
 					.sheet(isPresented: $showOptions) {
-						OptionsView(centerMap: $centerMap,
-									headingOnMap: $headingOnMap,
+						OptionsView(continuousUpdates: $continuousUpdates,
+									backgroundUpdates: $backgroundUpdates,
 									mapType: $mapType,
 									mapZoom: $mapZoom)
 							.presentationDetents([.medium, .large])

@@ -15,10 +15,20 @@ enum LocationAccuracy {
 class LocationManager: NSObject, ObservableObject {
 
     private var manager = CLLocationManager()
-	private(set) var isUpdating = false
+	private(set) var isUpdating = false {
+		didSet {
+			/*
+			 This is a hack to bridge SwiftUI with UIKit.
+			 Ideally, Combine should be used here but this doesn't work well with UIKit so I just added this callback close which works nice in both worlds.
+			 If the app is SwiftUI-only, use Combine to Publish isUpdating and everything is going to be fine.
+			 */
+			onIsUpdatingChanged?(isUpdating)
+		}
+	}
 	private(set) var currentLocation: CLLocation?
 	
 	var onLocationUpdate: ((CLLocation) -> Void)?
+	var onIsUpdatingChanged: ((Bool) -> Void)?
 	
 	override init() {
         super.init()
