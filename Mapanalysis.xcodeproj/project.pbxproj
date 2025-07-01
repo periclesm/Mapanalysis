@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		681AD0F42E0319300007DF87 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E2DA142DFB063E00F3E0CF /* MapKit.framework */; };
 		68E2DA152DFB063E00F3E0CF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E2DA142DFB063E00F3E0CF /* MapKit.framework */; };
+		68ECD8E62E13DB7A007E931F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68ECD8E52E13DB7A007E931F /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		681AD0F92E0319300007DF87 /* Mapanalysis SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapanalysis SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68E2D9FB2DFB05D900F3E0CF /* Mapanalysis UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mapanalysis UIKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68E2DA142DFB063E00F3E0CF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		68ECD8E52E13DB7A007E931F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -66,6 +68,7 @@
 		681AD0F32E0319300007DF87 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				68ECD8E62E13DB7A007E931F /* CoreLocation.framework in Frameworks */,
 				681AD0F42E0319300007DF87 /* MapKit.framework in Frameworks */,
 			);
 		};
@@ -99,6 +102,7 @@
 		68E2DA132DFB063E00F3E0CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68ECD8E52E13DB7A007E931F /* CoreLocation.framework */,
 				68E2DA142DFB063E00F3E0CF /* MapKit.framework */,
 			);
 			name = Frameworks;
@@ -215,7 +219,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = AFNBPBD3C5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mapanalysis/Info-SUI.plist";
@@ -237,7 +241,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -253,7 +257,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = AFNBPBD3C5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mapanalysis/Info-SUI.plist";
@@ -275,7 +279,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -289,7 +293,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = AFNBPBD3C5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapanalysis/Info.plist;
@@ -312,7 +316,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -326,7 +330,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = AFNBPBD3C5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapanalysis/Info.plist;
@@ -349,7 +353,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
